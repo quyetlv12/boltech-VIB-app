@@ -9,7 +9,7 @@ const HttpClient = Axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL
 });
 
-HttpClient.interceptors.request.use((config) => {
+HttpClient.interceptors.request.use((config: { headers: { Authorization: string; }; isBackgroundRequest: any; }) => {
     const token = store.getState().app.auth?.authToken
     if (token) {
         config.headers.Authorization = `Bearer ${token}`
@@ -23,7 +23,7 @@ HttpClient.interceptors.request.use((config) => {
 })
 
 HttpClient.interceptors.response.use(
-    (response) => {
+    (response: { config: { isBackgroundRequest: any; }; }) => {
         // @ts-ignore
         if (response && !response.config.isBackgroundRequest) {
             store.dispatch(hideLoading())

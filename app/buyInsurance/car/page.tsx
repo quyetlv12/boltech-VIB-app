@@ -3,7 +3,9 @@ import React from 'react'
 
 const BuyCarInsurance = () => {
   return (
-    <div>BuyCarInsurance</div>
+    <div>
+      <span>h1h22</span>
+    </div>
   )
 }
 

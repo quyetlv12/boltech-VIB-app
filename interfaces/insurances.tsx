@@ -6,4 +6,6 @@ export interface PRODUCT {
   type: string;
   slogan: string;
   benefit: any[];
+  link : string;
+  logo? : string | StaticImageData;
 }

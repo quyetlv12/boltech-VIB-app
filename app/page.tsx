@@ -1,5 +1,4 @@
 'use client'
-
 import Products from '@components/Products';
 import { PRODUCTS } from '@constants';
 import { Inter } from '@next/font/google';
@@ -8,7 +7,6 @@ import { useState } from "react";
 const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
-
     const [currency, setCurrency] = useState('');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {

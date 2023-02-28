@@ -5,11 +5,19 @@ export interface BuyInsuranceState {
   stepData: any;
   type: any;
   step0data: object;
+  contractId : string,
+  step_1 : object ,
+  step_2 : object ,
+  step_3 : object ,
 }
 
 export const initialState: BuyInsuranceState = {
   step: 0,
-  stepData: null,
+  stepData: {},
+  contractId : "",
+  step_1 : {},
+  step_2 : {},
+  step_3 : {},
   type: null,
   step0data: {},
 };
@@ -21,7 +29,7 @@ const buyInsurance = createSlice({
     selectInsuraneBuy: (
       state: Draft<typeof initialState>,
       action: PayloadAction<typeof initialState>
-    ) => {
+    ) => {      
       state.type = action.payload.type;
       state.step0data = action.payload;
     },
@@ -29,12 +37,20 @@ const buyInsurance = createSlice({
       state: Draft<typeof initialState>,
       action: PayloadAction<typeof initialState>
     ) => {
-    //    state.step = action.payload 
+       state.step = action.payload.step
     },
     nextStep: (
       state: Draft<typeof initialState>,
-      action: PayloadAction<typeof initialState>
-    ) => {},
+      action: PayloadAction<any>
+    ) => {
+      console.log(initialState);
+      if (initialState.step === 0) {
+        let _step = initialState.step
+        _step = _step++
+        console.log("step" , _step);
+        
+      }      
+    },
     resetStepData : (state: Draft<typeof initialState>,
         action: PayloadAction<typeof initialState>) => {
             state.step = 0;
@@ -51,5 +67,5 @@ export const getTypeInsurance = (state: any) => state.buyInsurance.type;
 export const getStep0data  = (state: any) => state.buyInsurance.step0data;
 
 // Reducers and actions
-export const { selectInsuraneBuy } = buyInsurance.actions;
+export const { selectInsuraneBuy , backStep , nextStep , resetStepData } = buyInsurance.actions;
 export default buyInsurance.reducer;

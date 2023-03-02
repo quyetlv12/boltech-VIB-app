@@ -13,3 +13,8 @@ export interface BENEFIT {
   icon?: string;
   content?: string;
 }
+export interface ROW_INFO {
+  content : string;
+  key_form : string;
+  typeInput : string;
+}

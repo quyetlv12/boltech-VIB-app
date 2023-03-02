@@ -44,7 +44,7 @@ export const PRODUCTS = [
         content: "Hỗ trợ cứu hộ 24/7",
       },
     ],
-    link : "/buyInsurance",
+    link : "/buyInsurance/car",
     logo : carLogo
   },
   {
@@ -143,3 +143,8 @@ const pathHiddenHeader = [
 export const isHiddenHeader = (path:string) => {
   return pathHiddenHeader.every(_path => _path === path) ? 'hidden' : 'flex'
 }
+export const stepArray = [1,2,3]
+export const INPUT_NUMBER_TYPE = 'number'
+export const INPUT_SELECT_TYPE = 'select'
+export const INPUT_STRING_TYPE = 'string'
+export const INPUT_DATE_TYPE = 'date'

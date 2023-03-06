@@ -1,22 +1,28 @@
-import { useAppSelector } from '@constants';
-import React, { FC } from 'react'
-import { getInputStatus } from 'store/buyInsurance';
+import { useAppSelector } from "@constants";
+import React, { FC } from "react";
+import { getInputStatus } from "store/buyInsurance";
 
 interface Props {
-    title : string,
-    subTitle : string ,
-     className? : string
+  title: string;
+  subTitle?: string;
+  className?: string;
+  size?: string;
 }
-const Title:FC<Props> = ({title, 
-    subTitle , className}) => {
-        const inputStatus = useAppSelector(getInputStatus);
+const Title: FC<Props> = ({ title, subTitle, className, size = "22" }) => {
+  console.log("size", size);
+
+  const inputStatus = useAppSelector(getInputStatus);
 
   return (
-    <div className={`px-3 ${className} ${!inputStatus ? "" : "hidden"  }`}>
-        <h2 className="font-bold text-[22px]">{title}</h2>
-        <p className='text-[#6C727F] text-[17px] font-normal'>{subTitle}</p>
+    <div className={`px-3 ${className} ${!inputStatus ? "" : "hidden"}`}>
+      <h2 className={`font-bold text-[${size}px]`}>{title}</h2>
+      {subTitle && (
+        <p className={`text-[#6C727F] text-[17px] font-normal`}>
+          {subTitle}
+        </p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Title
+export default Title;

@@ -8,8 +8,8 @@ interface Props {
 }
 const Footer:FC<Props> = () => {
   return (
-    <div className='mt-5 absolute bottom-[2%] w-full'>
-      <p className={`text-[${TEXT_FOOTER_COLOR}] text-[12px] text-center `}>
+    <div className='mt-5 w-full'>
+        <p className={`text-[${TEXT_FOOTER_COLOR}] text-[12px] text-center `}>
         Hotline: +84 244 4582 274
         </p>
     </div>

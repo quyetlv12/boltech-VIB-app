@@ -53,10 +53,9 @@ const BannerStep0: FC<Props> = () => {
           })
         }
       </div>
-      <div className="px-[5%] mt-5">
+      <div className="px-[5%]">
       <Button name={"Mua trực tuyến"} onClick={handleClickBuyInsurance} className="w-full mt-3" />
       </div>
-      <Footer />
     </div>
   );
 };

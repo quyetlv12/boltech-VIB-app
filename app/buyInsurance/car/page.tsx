@@ -1,14 +1,12 @@
 "use client";
 
+import BuyInsuranceStep from "@components/BuyInsuranceStep";
 import { useAppDispatch, useAppSelector } from "@constants";
+import { useEffect } from "react";
 import { getStep, turnOffInput } from "store/buyInsurance";
 import Step1 from "./step/step1";
 import Step2 from "./step/step2";
 import Step3 from "./step/step3";
-import BannerStep0 from "@components/BannerStep0";
-import BuyInsuranceStep from "@components/BuyInsuranceStep";
-import { useEffect } from "react";
-import ProcessBuyInsurance from "@components/ProcessBuyInsurance";
 
 const BuyCarInsurance = () => {
   const step = useAppSelector(getStep);

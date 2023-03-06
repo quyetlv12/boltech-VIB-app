@@ -1,5 +1,5 @@
 import CarIcon from "../assests/products/car.png";
-import CarTNDSIcon from "../assests/products/CarTNDS.png";
+import CarTNDSIcon from "../assests/products/carTNDS.png";
 import HeathcareSIcon from "../assests/products/heathCare.png";
 import DomesticIcon from "../assests/products/domestic.png";
 import carLogo from "../assests/banner/car.png";

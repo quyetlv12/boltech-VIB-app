@@ -18,3 +18,8 @@ export interface ROW_INFO {
   key_form : string;
   typeInput : string;
 }
+export interface INPUT_DATA {
+  content : string,
+  key_form : string,
+  typeInput : string
+}

@@ -1,4 +1,5 @@
 import { Draft, PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { INPUT_DATA } from "interfaces/insurances";
 
 export interface BuyInsuranceState {
   step: number;
@@ -11,7 +12,7 @@ export interface BuyInsuranceState {
   step_3: object;
   maxStep: number;
   isInput: boolean;
-  inputType : string
+  inputData : object;
 }
 
 export const initialState: BuyInsuranceState = {
@@ -25,7 +26,7 @@ export const initialState: BuyInsuranceState = {
   step0data: {},
   maxStep: 3,
   isInput: false,
-  inputType : ''
+  inputData : {},
 };
 
 const buyInsurance = createSlice({
@@ -63,11 +64,11 @@ const buyInsurance = createSlice({
     },
     turnOnInput: (
       state: Draft<typeof initialState>, 
-      action: PayloadAction<string>
+      action: PayloadAction<INPUT_DATA>
       
     ) => {
       state.isInput = true;
-      state.inputType = action.payload
+      state.inputData = action.payload
       
     },
     turnOffInput: (

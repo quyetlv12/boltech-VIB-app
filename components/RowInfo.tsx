@@ -28,11 +28,11 @@ const RowInfo: FC<Props> = ({ info }) => {
         {
           info.map((_elt , index) => {
             return (
-              <div className="flex justify-between px-3 py-5 h-[50px] items-center bg-[#fff] shadow-[#F3F4F6]">
+              <div key={index} className="flex justify-between px-3 py-5 h-[50px] items-center bg-[#fff] shadow-[#F3F4F6]">
               <span>{_elt.content}</span>
               <div className="flex">
               <span onClick={() => handleInputValue(_elt.typeInput)}>nhập</span>
-              <Image src={Arrow} alt="arrow" width={15} height={15} />
+              <Image src={Arrow} alt="arrow" />
               </div>
             </div>
             )

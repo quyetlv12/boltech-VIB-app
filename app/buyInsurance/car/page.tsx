@@ -8,6 +8,7 @@ import Step3 from "./step/step3";
 import BannerStep0 from "@components/BannerStep0";
 import BuyInsuranceStep from "@components/BuyInsuranceStep";
 import { useEffect } from "react";
+import ProcessBuyInsurance from "@components/ProcessBuyInsurance";
 
 const BuyCarInsurance = () => {
   const step = useAppSelector(getStep);
@@ -30,7 +31,8 @@ const BuyCarInsurance = () => {
     dispatch(turnOffInput())
   }, [])
   
-  return <div>{renderSceen()}</div>;
+  return <div>
+    {renderSceen()}</div>;
 };
 
 export default BuyCarInsurance;

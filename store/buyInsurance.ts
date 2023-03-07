@@ -79,12 +79,12 @@ const buyInsurance = createSlice({
   },
 });
 // Selectors
-// export const getUser = (state:any) => state.availableProducts;
 export const getStep = (state: any) => state.buyInsurance.step;
 export const getTypeInsurance = (state: any) => state.buyInsurance.type;
 export const getStep0data = (state: any) => state.buyInsurance.step0data;
 export const getMaxStep = (state: any) => state.buyInsurance.maxStep;
 export const getInputStatus = (state: any) => state.buyInsurance.isInput;
+export const getInputData = (state: any) => state.buyInsurance.inputData;
 
 // Reducers and actions
 export const {

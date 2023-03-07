@@ -9,8 +9,6 @@ interface Props {
   size?: string;
 }
 const Title: FC<Props> = ({ title, subTitle, className, size = "22" }) => {
-  console.log("size", size);
-
   const inputStatus = useAppSelector(getInputStatus);
 
   return (

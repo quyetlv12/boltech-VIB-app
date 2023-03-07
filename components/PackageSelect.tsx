@@ -1,9 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import PjicoLogo from "../assests/insurance/pjico-logo.png";
+import { useAppSelector } from "@constants";
+import { getInputStatus } from "store/buyInsurance";
 const PackageSelect = () => {
+  const inputStatus = useAppSelector(getInputStatus);
   return (
-    <div className="px-[5%]">
+    <div className={`px-[5%] ${inputStatus ? 'hidden' : '' }`}>
       <div className="bg-[#fff] w-full rounded-md">
         <div className="border-b-[1px] border-[#F3F4F6] px-[20px] py-[10px] flex items-center gap-5">
           <Image src={PjicoLogo} alt="logo pjico" width={50} />

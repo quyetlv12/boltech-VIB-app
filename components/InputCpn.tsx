@@ -25,7 +25,7 @@ const InputStyled = styled.div`
 const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
   const inputStatus = useAppSelector(getInputStatus);
   return (
-    <InputStyled className={`relative h-screen ${inputStatus ? "" : "hidden"}`}>
+    <InputStyled className={`relative ${inputStatus ? "" : "hidden"} px-3`}>
       {/* ==========title========= */}
       <span className="mb-3 font-semibold text-[20px]">Nhập số tiền trách nhiệm</span>
       {/* =============input ======== */}
@@ -39,11 +39,11 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
           placeholder={placeholder}
           defaultValue={value}
           decimalsLimit={2}
+          className="shadow-lg"
           onValueChange={(value, name) => console.log(value, name)}
           autoFocus={true}
         />
       </div>
-      <Button name="Áp dụng" className="w-full absolute bottom-[10%]" /> 
     </InputStyled>
   );
 };

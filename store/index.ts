@@ -27,7 +27,7 @@ export function makeStore() {
   return configureStore({
     reducer: persistedReducer,
     devTools: true,
-    middleware: [thunk, logger],
+    middleware: process.env.NODE_ENV !== 'production' ? [thunk, logger] : undefined,
     enhancers: [batchedSubscribe(debounceNotify)],
   });
 }

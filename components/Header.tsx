@@ -1,5 +1,5 @@
 "use client";
-import { isHiddenHeader, useAppDispatch, useAppSelector } from "@constants";
+import { isHiddenHeader, isShowInput, useAppDispatch, useAppSelector } from "@constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,6 +10,7 @@ import Close from "../assests/header/close.png";
 import Reload from "../assests/header/reload.png";
 import {
   backStep,
+  getInputData,
   getInputStatus,
   getStep,
   getStep0data,
@@ -25,8 +26,8 @@ const Header: FC<Props> = () => {
   const step = useAppSelector(getStep);
   const step0data = useAppSelector(getStep0data);
   const inputStatus = useAppSelector(getInputStatus);
+  const inputData = useAppSelector(getInputData);
   const handleBack = () => {
-    console.log(step);
     if (step > 0) {
       dispatch(backStep());
       return;
@@ -41,18 +42,20 @@ const Header: FC<Props> = () => {
   const handleNext = () => {
     dispatch(nextStep());
   };
+  console.log("inputData" , inputData);
+  
   return (
     <>
       {inputStatus ? (
         <div
-          className={`h-[50px] flex-col fixed top-0 z-40 w-full  bg-[#fff] ${isHiddenHeader(
+          className={`h-[50px] flex-col fixed top-0 z-40 w-full bg-[#fff] ${isHiddenHeader(
             pathName
           )}`}
         >
-          <div className="flex items-center h-[50px] justify-center">
-            <span className="font-medium text-[16px]">Nhập thông tin</span>
+          <div className="flex items-center h-[50px] gap-10 justify-center">
+            <span className="font-medium text-[16px]">{inputData.content}</span>
             <button
-              className="absolute right-[5%]"
+              className="absolute right-[2%]"
               onClick={() => dispatch(turnOffInput())}
             >
               <Image

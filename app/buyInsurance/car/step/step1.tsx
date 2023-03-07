@@ -1,4 +1,4 @@
-import CurrencyInputCpn from "@components/InputNumber";
+import CurrencyInputCpn from "@components/InputCpn";
 import RowInfo from "@components/RowInfo";
 import Title from "@components/Title";
 import { useState } from "react";
@@ -13,10 +13,7 @@ import { nextStep } from 'store/buyInsurance';
 
 const Step1 = () => {  
   const dispatch = useAppDispatch()
-  const handleNextStep = ():void => {
-    console.log("next step here");
-    dispatch(nextStep())
-  }
+
   return (
     <>
     <div className="mb-3 py-5">
@@ -25,7 +22,6 @@ const Step1 = () => {
       <Title title="Kết quả gói bảo hiểm phù hợp" className="mb-3 mt-3" size="16" />
       <PackageSelect />
     </div>
-    <div className="flex justify-center w-full px-[5%]"><Button name={'Chọn gói này'} className="w-full " onClick={handleNextStep} /> </div>
     </>
   );
 };

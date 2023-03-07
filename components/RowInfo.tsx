@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@constants";
 import { FC, useState } from "react";
 import { getInputStatus, turnOnInput } from "store/buyInsurance";
-import CurrencyInputCpn from "./InputNumber";
+import CurrencyInputCpn from "./InputCpn";
 import { INPUT_DATA, ROW_INFO } from "interfaces/insurances";
 import Arrow from "assests/arrow.png";
 import Image from "next/image";
@@ -10,7 +10,6 @@ interface Props {
 }
 const RowInfo: FC<Props> = ({ info }) => {
   const inputStatus = useAppSelector(getInputStatus);
-  console.log("inputStatus", inputStatus);
   const dispath = useAppDispatch();
 
   const handleInputValue = (object: INPUT_DATA) => {

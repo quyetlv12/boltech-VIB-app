@@ -10,6 +10,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import carBen1 from '../assests/iconStep0/carBen1.png'
 import carBen2 from '../assests/iconStep0/carBen2.png'
 import carBen3 from '../assests/iconStep0/carBen3.png'
+import { getInputStatus } from "store/buyInsurance";
 export const API_TIME_OUT:number = 10000;
 export const CAR:string = "car";
 export const CARTNDS:string = "carTnds";
@@ -18,6 +19,7 @@ export const HEATH_CARE:string = "heathCare";
 export const DOMESTIC:string = "domestic";
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
 
 // ==============COLOR==============
 export const TEXT_FOOTER_COLOR:string = '#6C727F'
@@ -143,8 +145,23 @@ const pathHiddenHeader = [
 export const isHiddenHeader = (path:string) => {
   return pathHiddenHeader.every(_path => _path === path) ? 'hidden' : 'flex'
 }
+export const isShowInput = () => {
+  return async (dispatch:any, getState:any) => {
+    console.log("isShowInput" , getState());
+    return getState()
+    
+    // const currentState= getState().example;
+    // console.log(currentState) 
+  }
+}
 export const stepArray = [1,2,3]
 export const INPUT_NUMBER_TYPE = 'number'
 export const INPUT_SELECT_TYPE = 'select'
 export const INPUT_STRING_TYPE = 'string'
 export const INPUT_DATE_TYPE = 'date'
+export const APPLY = 'Áp dụng'
+export const SELECT_PACKAGE = 'Chọn gói này'
+export const BUY_ONLINE = 'Mua trực tuyến'
+export const COUNTINUE = 'Tiếp tục'
+export const AGREE = 'Đồng ý'
+export const BUY_NOW = 'Mua ngay'

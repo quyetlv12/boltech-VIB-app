@@ -25,7 +25,7 @@ const BannerStep0: FC<Props> = () => {
         <span className="absolute text-xl top-[50%] text-[#fff] left-[5%]">{step0data.name}</span>
         <div className="flex justify-end ">
           <Image
-            src={step0data.logo}
+            src={step0data?.logo}
             className="w-[30%] absolute top-[30%] right-[5%]"
             alt="banner main"
           />
@@ -52,9 +52,6 @@ const BannerStep0: FC<Props> = () => {
             )
           })
         }
-      </div>
-      <div className="px-[5%]">
-      <Button name={"Mua trực tuyến"} onClick={handleClickBuyInsurance} className="w-full mt-3" />
       </div>
     </div>
   );

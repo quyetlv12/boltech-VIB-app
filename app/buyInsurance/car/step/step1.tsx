@@ -16,7 +16,7 @@ const Step1 = () => {
 
   return (
     <>
-    <div className="mb-3 py-5">
+    <div>
       <Title title="Thông tin chi tiết xe" subTitle="Thay đổi thông tin để có kết quả phù hợp" className="mb-3" />
       <RowInfo info={CUSTOM_FIELD}/>
       <Title title="Kết quả gói bảo hiểm phù hợp" className="mb-3 mt-3" size="16" />

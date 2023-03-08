@@ -147,17 +147,14 @@ export const isHiddenHeader = (path:string) => {
 }
 export const isShowInput = () => {
   return async (dispatch:any, getState:any) => {
-    console.log("isShowInput" , getState());
-    return getState()
-    
-    // const currentState= getState().example;
-    // console.log(currentState) 
+    return getState() 
   }
 }
 export const stepArray:number[] = [1,2,3]
 export const INPUT_NUMBER_TYPE:string = 'number'
 export const INPUT_SELECT_TYPE:string = 'select'
 export const INPUT_STRING_TYPE:string = 'string'
+export const INPUT_UPLOAD_IMAGE:string = 'string'
 export const INPUT_DATE_TYPE:string = 'date'
 export const APPLY:string = 'Áp dụng'
 export const SELECT_PACKAGE:string = 'Chọn gói này'
@@ -165,6 +162,6 @@ export const BUY_ONLINE:string = 'Mua trực tuyến'
 export const COUNTINUE:string = 'Tiếp tục'
 export const AGREE:string = 'Đồng ý'
 export const BUY_NOW:string = 'Mua ngay'
-export const isObjectEmpty = (object:object) => {
+export const isObjectEmpty = (object:object = {}) => {
   return _.isEmpty(object);
 }

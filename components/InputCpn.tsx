@@ -5,8 +5,8 @@ import { getInputStatus } from "store/buyInsurance";
 import styled from "styled-components";
 import Button from "./Button";
 interface Props {
-  value: number | undefined;
-  placeholder: string;
+  value?: number | undefined;
+  placeholder?: string;
 }
 const InputStyled = styled.div`
   input {
@@ -24,6 +24,7 @@ const InputStyled = styled.div`
 `;
 const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
   const inputStatus = useAppSelector(getInputStatus);
+  
   return (
     <InputStyled className={`relative ${inputStatus ? "" : "hidden"} px-3`}>
       {/* ==========title========= */}
@@ -36,7 +37,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
         <CurrencyInput
           id="input-number"
           name="input-name"
-          placeholder={placeholder}
+          placeholder={""}
           defaultValue={value}
           decimalsLimit={2}
           className="shadow-lg"

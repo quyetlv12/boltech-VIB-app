@@ -41,7 +41,7 @@ const BannerStep0: FC<Props> = () => {
         <span className="text-[15px]">{step0data.slogan}</span>
       </div>
       <div className="font-bold text-[22px] px-[5%]">Quyền lợi bảo hiểm</div>
-      <div className="text-[15px] px-[5%] mt-3 bg-[#fbf2ee] py-5">
+      <div className="text-[15px] px-[5%] mt-3 bg-[#fbf2ee] py-5 mb-[20px]">
         {step0data.benefit &&
           step0data.benefit.map((_elt: BENEFIT, index: number) => {
             return (

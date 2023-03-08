@@ -1,21 +1,22 @@
 "use client";
 
-import BuyInsuranceStep from "@components/BuyInsuranceStep";
+import BannerStep0 from "@components/BannerStep0";
+import Footer from "@components/Footer";
+import CurrencyInputCpn from "@components/InputCpn";
 import { useAppDispatch, useAppSelector } from "@constants";
 import { useEffect } from "react";
 import { getStep, turnOffInput } from "store/buyInsurance";
 import Step1 from "./step/step1";
 import Step2 from "./step/step2";
 import Step3 from "./step/step3";
-import Footer from "@components/Footer";
 
 const BuyCarInsurance = () => {
   const step = useAppSelector(getStep);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const renderSceen = () => {
     switch (step) {
       case 0:
-        return <BuyInsuranceStep />;
+        return <BannerStep0 />;
       case 1:
         return <Step1 />;
       case 2:
@@ -27,13 +28,19 @@ const BuyCarInsurance = () => {
     }
   };
   useEffect(() => {
-    dispatch(turnOffInput())
-  }, [])
-  
-  return <div>
-    {renderSceen()}
-    <Footer/>
-    </div>;
+    dispatch(turnOffInput());
+  }, []);
+
+  return (
+    <>
+      <div className="mb-3">
+        {renderSceen()}
+        {/* // using input global for app */}
+        <CurrencyInputCpn />
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default BuyCarInsurance;

@@ -21,5 +21,6 @@ export interface ROW_INFO {
 export interface INPUT_DATA {
   content : string,
   key_form : string,
-  typeInput : string
+  typeInput : string,
+  iconArr? : StaticImageData[],
 }

@@ -43,7 +43,7 @@ const Footer: FC<Props> = () => {
   }, [depenc]);
 
   return (
-    <div className="mt-5 w-full absolute bottom-[5px] py-[5px] footer__main">
+    <div className="w-full py-[5px] footer__main">
       <div className="flex justify-center w-full px-[5%]">
         <Button
           name={textBtnFooter}

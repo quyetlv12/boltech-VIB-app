@@ -17,7 +17,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <div className={`${pathName === '/' ? "" : "pt-[50px] pb-[30px] bg-light-gray w-full min-h-screen mx-auto"}`}>
+          <div className={`${pathName === '/' ? "" : "pt-[50px]bg-light-gray w-full min-h-screen mx-auto"}`}>
           {children}
           </div>
           

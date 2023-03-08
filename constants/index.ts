@@ -3,7 +3,7 @@ import CarTNDSIcon from "../assests/products/carTNDS.png";
 import HeathcareSIcon from "../assests/products/heathCare.png";
 import DomesticIcon from "../assests/products/domestic.png";
 import carLogo from "../assests/banner/car.png";
-
+import _ from 'lodash'
 import HomeIcon from "../assests/products/home.png";
 import { AppDispatch, RootState } from "store";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -154,14 +154,17 @@ export const isShowInput = () => {
     // console.log(currentState) 
   }
 }
-export const stepArray = [1,2,3]
-export const INPUT_NUMBER_TYPE = 'number'
-export const INPUT_SELECT_TYPE = 'select'
-export const INPUT_STRING_TYPE = 'string'
-export const INPUT_DATE_TYPE = 'date'
-export const APPLY = 'Áp dụng'
-export const SELECT_PACKAGE = 'Chọn gói này'
-export const BUY_ONLINE = 'Mua trực tuyến'
-export const COUNTINUE = 'Tiếp tục'
-export const AGREE = 'Đồng ý'
-export const BUY_NOW = 'Mua ngay'
+export const stepArray:number[] = [1,2,3]
+export const INPUT_NUMBER_TYPE:string = 'number'
+export const INPUT_SELECT_TYPE:string = 'select'
+export const INPUT_STRING_TYPE:string = 'string'
+export const INPUT_DATE_TYPE:string = 'date'
+export const APPLY:string = 'Áp dụng'
+export const SELECT_PACKAGE:string = 'Chọn gói này'
+export const BUY_ONLINE:string = 'Mua trực tuyến'
+export const COUNTINUE:string = 'Tiếp tục'
+export const AGREE:string = 'Đồng ý'
+export const BUY_NOW:string = 'Mua ngay'
+export const isObjectEmpty = (object:object) => {
+  return _.isEmpty(object);
+}

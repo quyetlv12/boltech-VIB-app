@@ -3,7 +3,7 @@ import { INPUT_DATA } from "interfaces/insurances";
 
 export interface BuyInsuranceState {
   step: number;
-  stepData: any;
+  stepData: any | undefined;
   type: any;
   step0data: object;
   contractId: string;
@@ -35,7 +35,7 @@ const buyInsurance = createSlice({
   reducers: {
     selectInsuraneBuy: (
       state: Draft<typeof initialState>,
-      action: PayloadAction<typeof initialState>
+      action: PayloadAction<any>
     ) => {
       state.type = action.payload.type;
       state.step0data = action.payload;

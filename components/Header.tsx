@@ -42,7 +42,6 @@ const Header: FC<Props> = () => {
   const handleNext = () => {
     dispatch(nextStep());
   };
-  console.log("inputData" , inputData);
   
   return (
     <>

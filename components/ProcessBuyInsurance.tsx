@@ -4,7 +4,7 @@ import { getMaxStep, getStep } from "store/buyInsurance";
 const ProcessBuyInsurance = () => {
   const step = useAppSelector(getStep);
   const maxStep = useAppSelector(getMaxStep);
-  // console.log("step" , step > 0);
+  console.log("step" , step);
   
   return (
     <div className="px-3 py-1">
@@ -14,10 +14,9 @@ const ProcessBuyInsurance = () => {
           <div
           key={index}
             className={`bg-[${
-              step >= _elt ? "#000" : "#fff"
+              step >= _elt ? `#000`  : `#fff`
             }] h-[5px] w-1/3 border-l-1 outline-0 border-[#000]`}
           >
-           
           </div>
         ))}
 

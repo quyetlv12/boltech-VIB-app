@@ -35,7 +35,7 @@ const RowInfo: FC<Props> = ({ info , className }) => {
                   _elt.typeInput !== INPUT_UPLOAD_IMAGE ?  <span className="font-semibold" onClick={() => handleInputValue(_elt)}>Nhập</span> : <div  className="flex gap-5">
                     {
                       _elt.iconArr?.map((_elt:any , index:number) => (
-                        <div className="rounded-md border border-[#C4C4C4] h-[50px] w-[50px]"><Image src={_elt} alt={'upload image'} width={200} key={index} /> </div>
+                        <div className="rounded-md border border-[#C4C4C4] h-[50px] w-[50px]" key={index}><Image src={_elt} alt={'upload image'} width={200} key={index} /> </div>
                       ))
                     }
                   </div>

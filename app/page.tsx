@@ -2,10 +2,6 @@
 import Products from '@components/Products';
 import { PRODUCTS } from '@constants';
 import { Inter } from '@next/font/google';
-import { useState } from "react";
-import 'react-datetime-picker/dist/DateTimePicker.css';
-import 'react-calendar/dist/Calendar.css';
-import 'react-clock/dist/Clock.css';
 
 const inter = Inter({subsets: ['latin']})
 

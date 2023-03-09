@@ -46,7 +46,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
               <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                 Nhập {inputData.content}
               </span>
-              <input type="number" />
+              <input type="tel"/>
             </div>
           </div>;
         case INPUT_DATE_TYPE:

@@ -15,6 +15,7 @@ import {
 import Button from "./Button";
 import { getInputStatus, getStep, nextStep } from "store/buyInsurance";
 import { usePathname } from "next/navigation";
+import Title from "./Title";
 interface Props {}
 const Footer: FC<Props> = () => {
   const [textBtnFooter, setTextBtnFooter] = useState("Button here");
@@ -52,6 +53,13 @@ const Footer: FC<Props> = () => {
           onClick={handleNextStep}
         />{" "}
       </div>
+      {step === 3 && (
+        <Title
+          title="Chúng tôi không thu bất kỳ khoản phí thanh toán nào!"
+          className="mt-3 text-center"
+          size="13"
+        />
+      )}
       <p className={`text-[${TEXT_FOOTER_COLOR}] text-[12px] text-center mt-3`}>
         Hotline: +84 244 4582 274
       </p>

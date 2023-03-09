@@ -1,15 +1,9 @@
-import CurrencyInputCpn from "@components/InputCpn";
+import PackageSelect from "@components/PackageSelect";
 import RowInfo from "@components/RowInfo";
 import Title from "@components/Title";
-import { useState } from "react";
 import { CUSTOM_FIELD } from "./utility";
-import Image from "next/image";
-import PjicoLogo from '../../../../assests/insurance/pjico-logo.png'
-import Button from "@components/Button";
-import PackageSelect from "@components/PackageSelect";
 // import   from 'assests/arrow.png'
 import { useAppDispatch } from './../../../../constants/index';
-import { nextStep } from 'store/buyInsurance';
 
 const Step1 = () => {  
   const dispatch = useAppDispatch()

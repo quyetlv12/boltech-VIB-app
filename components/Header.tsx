@@ -5,8 +5,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
 import ArrowActive from "../assests/header/arrow-active.png";
+import ArrowLeftNotActive from "../assests/arrow-leftFooter.png";
 import ArrowNotActive from "../assests/header/arrow-not-active.png";
 import Close from "../assests/header/close.png";
+import arrowRight from "../assests/arrow-rightFooter.png";
 import Reload from "../assests/header/reload.png";
 import {
   backStep,
@@ -52,7 +54,7 @@ const Header: FC<Props> = () => {
           )}`}
         >
           <div className="flex items-center h-[50px] gap-10 justify-center">
-            <span className="font-medium text-[16px]">{inputData.content}</span>
+            <span className="font-medium text-[16px] capitalize">{inputData.content}</span>
             <button
               className="absolute right-[2%]"
               onClick={() => dispatch(turnOffInput())}
@@ -82,21 +84,37 @@ const Header: FC<Props> = () => {
               </Link>
             </button>
             <div>
-              <div onClick={handleBack}>
-                <Image
+              <div>
+                {
+                  step === 0 ? <Image
+                  src={ArrowLeftNotActive}
+                  alt="close app"
+                  className="w-[30px] h-[30px]"
+                /> :   <Image
                   src={ArrowActive}
                   alt="close app"
                   className="w-[35px] h-[35px]"
+                  onClick={handleBack}
                 />
+                }
+              
               </div>
             </div>
             <span className="font-medium text-[16px]">{step0data?.name}</span>
-            <div onClick={handleNext}>
-              <Image
+            <div >
+              {
+                step === 3 ?  <Image
                 src={ArrowNotActive}
                 alt="next"
                 className="w-[35px] h-[35px]"
+              /> :  <Image
+                src={arrowRight}
+                alt="next"
+                className="w-[30px] h-[30px]"
+                onClick={handleNext}
               />
+              }
+             
             </div>
             <div onClick={handleReload}>
               <Image

@@ -13,6 +13,7 @@ export interface BuyInsuranceState {
   maxStep: number;
   isInput: boolean;
   inputData : object;
+  selectArr : [];
 }
 
 export const initialState: BuyInsuranceState = {
@@ -27,6 +28,7 @@ export const initialState: BuyInsuranceState = {
   maxStep: 3,
   isInput: false,
   inputData : {},
+  selectArr : []
 };
 
 const buyInsurance = createSlice({
@@ -85,6 +87,7 @@ export const getStep0data = (state: any) => state.buyInsurance.step0data;
 export const getMaxStep = (state: any) => state.buyInsurance.maxStep;
 export const getInputStatus = (state: any) => state.buyInsurance.isInput;
 export const getInputData = (state: any) => state.buyInsurance.inputData;
+export const getArrSelect = (state: any) => state.buyInsurance.selectArr;
 
 // Reducers and actions
 export const {

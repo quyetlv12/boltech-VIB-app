@@ -5,6 +5,7 @@ import {
   INPUT_SELECT_TYPE,
   INPUT_STRING_TYPE,
   INPUT_UPLOAD_IMAGE,
+  isObjectEmpty,
   useAppSelector,
 } from "@constants";
 import React, { FC } from "react";
@@ -37,54 +38,56 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
   console.log("inputData" , inputData);
   
   const RenderInput = () => {
-    switch (inputData.typeInput) {
-      case INPUT_NUMBER_TYPE:
-        return <div className="mt-4">
-            <div className="relative mt-4">
-            <span className="placeholder__input text-[12px] text-[#9DA3AE]">
-              Nhập {inputData.content}
-            </span>
-            <input type="number" />
-          </div>
-        </div>;
-      case INPUT_DATE_TYPE:
-        return <div className="mt-4">123</div>;
-      case INPUT_STRING_TYPE:
-        return <div className="mt-4">
-        <div className="relative mt-4">
-        <span className="placeholder__input text-[12px] text-[#9DA3AE]">
-          Nhập {inputData.content}
-        </span>
-        <input type="string" />
-      </div>
-    </div>;;
-      case INPUT_UPLOAD_IMAGE:
-        return <div className="mt-4">
-          <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333] mb-3">Chụp hình mới</div>
-          <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333]">Hình trong thư viện</div>
-        </div>;
-      case INPUT_SELECT_TYPE:
-        return <div className="mt-4">123</div>;;
-      case INPUT_CURRENCY_NUMBER:
-        return (
+    if (!isObjectEmpty(inputData)) {
+      switch (inputData.typeInput) {
+        case INPUT_NUMBER_TYPE:
+          return <div className="mt-4">
+              <div className="relative mt-4">
+              <span className="placeholder__input text-[12px] text-[#9DA3AE]">
+                Nhập {inputData.content}
+              </span>
+              <input type="number" />
+            </div>
+          </div>;
+        case INPUT_DATE_TYPE:
+          return <div className="mt-4">123</div>;
+        case INPUT_STRING_TYPE:
+          return <div className="mt-4">
           <div className="relative mt-4">
-            <span className="placeholder__input text-[12px] text-[#9DA3AE]">
-              Nhập {inputData.content}
-            </span>
-            <CurrencyInput
-              id="input-number"
-              name="input-name"
-              placeholder={""}
-              defaultValue={value}
-              decimalsLimit={2}
-              className="shadow-lg"
-              onValueChange={(value, name) => console.log(value, name)}
-              autoFocus={true}
-            />
-          </div>
-        );
-      default:
-        break;
+          <span className="placeholder__input text-[12px] text-[#9DA3AE]">
+            Nhập {inputData.content}
+          </span>
+          <input type="string" />
+        </div>
+      </div>;;
+        case INPUT_UPLOAD_IMAGE:
+          return <div className="mt-4">
+            <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333] mb-3">Chụp hình mới</div>
+            <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333]">Hình trong thư viện</div>
+          </div>;
+        case INPUT_SELECT_TYPE:
+          return <div className="mt-4">123</div>;;
+        case INPUT_CURRENCY_NUMBER:
+          return (
+            <div className="relative mt-4">
+              <span className="placeholder__input text-[12px] text-[#9DA3AE]">
+                Nhập {inputData.content}
+              </span>
+              <CurrencyInput
+                id="input-number"
+                name="input-name"
+                placeholder={""}
+                defaultValue={value}
+                decimalsLimit={2}
+                className="shadow-lg"
+                onValueChange={(value, name) => console.log(value, name)}
+                autoFocus={true}
+              />
+            </div>
+          );
+        default:
+          break;
+      }
     }
   };
   console.log("RenderInput" , RenderInput());

@@ -1,9 +1,9 @@
 import { INPUT_UPLOAD_IMAGE, useAppDispatch, useAppSelector } from "@constants";
 import Arrow from "assests/arrow.png";
-import { INPUT_DATA, ROW_INFO } from "interfaces/insurances";
+import { ICON_OBJ, INPUT_DATA, ROW_INFO } from "interfaces/insurances";
 import Image from "next/image";
 import { FC } from "react";
-import { getInputStatus, turnOnInput } from "store/buyInsurance";
+import { getInputStatus, getStep0data, turnOnInput } from "store/buyInsurance";
 import PjicoLogo from "../assests/insurance/pjico-logo.png";
 
 interface Props {
@@ -12,6 +12,9 @@ interface Props {
   logo?: boolean;
 }
 const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
+  const step0data = useAppSelector(getStep0data)
+  console.log("step0" ,step0data);
+  
   const inputStatus = useAppSelector(getInputStatus);
   const dispath = useAppDispatch();
 
@@ -29,7 +32,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
       <div className={`${inputStatus ? "hidden" : "block"} ${className}`}>
         {logo && (
           <div className="border-b-[1px] border-[#F3F4F6] px-[20px]  bg-[#fff] py-[10px] flex items-center gap-5">
-            <Image src={PjicoLogo} alt="logo pjico" width={50} />
+            <Image src={step0data.icon} alt="logo pjico" width={40} />
             <div>
               <p>PJICO</p>
               <span className="text-[#F47920] font-semibold text-[15px]">
@@ -63,13 +66,13 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
                   </span>
                 ) : (
                   <div className="flex gap-5">
-                    {_elt.iconArr?.map((__elt: any, index: number) => (
+                    {_elt.iconArr?.map((__elt: ICON_OBJ, index: number) => (
                       <div
                         className="rounded-md border border-[#C4C4C4] h-[50px] w-[50px]"
                         key={index}
                       >
                         <Image
-                          src={__elt}
+                          src={__elt?.icon ? __elt?.icon : '' }
                           alt={"upload image"}
                           width={200}
                           key={index}

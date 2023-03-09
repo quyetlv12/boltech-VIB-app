@@ -18,9 +18,13 @@ export interface ROW_INFO {
   key_form : string;
   typeInput : string;
 }
+export interface ICON_OBJ {
+  key? : string ,
+  icon? : StaticImageData | string
+}
 export interface INPUT_DATA {
   content : string,
   key_form : string,
   typeInput : string,
-  iconArr? : StaticImageData[],
+  iconArr? : ICON_OBJ[],
 }

@@ -44,7 +44,7 @@ const Footer: FC<Props> = () => {
   }, [depenc]);
 
   return (
-    <div className="w-full py-[5px] footer__main">
+    <div className={`w-full py-[5px] footer__main ${inputStatus ? 'fixed bg-[#fff] bottom-0' : '' }`}>
       <div className="flex justify-center w-full px-[5%]">
         <Button
           name={textBtnFooter}

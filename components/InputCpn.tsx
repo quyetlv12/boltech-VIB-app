@@ -9,7 +9,7 @@ import {
   useAppSelector
 } from "@constants";
 import { INPUT_DATA } from "interfaces/insurances";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import CurrencyInput from "react-currency-input-field";
 import { getInputData, getInputStatus } from "store/buyInsurance";
@@ -69,7 +69,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
             <div className="mt-4">
               <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333] mb-3">
                 <label htmlFor="upload-image1">Chụp hình mới</label>
-                <input type="file" id="upload-image1" className="hidden" />
+                <input type="file" id="upload-image1" className="hidden" accept="image/*" capture />
               </div>
               <div className="border-grey-200 text-center py-3 rounded-full border-[1px] border-[#333]">
                 <label htmlFor="upload-image2">Hình trong thư viện</label>
@@ -104,8 +104,11 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
       }
     }
   };
-  console.log("RenderInput", RenderInput());
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [inputStatus])
+  
   return (
     <InputStyled className={`relative ${inputStatus ? "" : "hidden"} px-3`}>
       {/* ==========title========= */}

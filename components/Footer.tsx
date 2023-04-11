@@ -50,7 +50,6 @@ const Footer: FC<Props> = () => {
           step !== 0 ? null  :  <Button
           name={"Tiếp tục"}
           className="w-full"
-          hiddenBtn={true}
           onClick={step === 0 ? handleNextStep : undefined }
           type={step > 0 ? 'submit' : 'button' }
         />

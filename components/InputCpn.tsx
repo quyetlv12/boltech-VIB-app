@@ -65,7 +65,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
                 <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                   Nhập {inputData.content}
                 </span>
-                <input type="tel" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} ref={inputRef} />
+                <input type="tel" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} />
               </div>
             </div>
           );
@@ -76,7 +76,8 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
                 <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                   Nhập {inputData.content}
                 </span>
-                <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} ref={inputRef} />
+                <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue}
+                 />
               </div>
             </div>
           );
@@ -94,7 +95,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
             </div>
           );
         case INPUT_DATE_TYPE:
-          return <DatePicker />;
+          return <DatePicker setValue={setValue} key={key_form} setInputValue={setInputValue} inputValue={inputValue} />;
         case INPUT_SELECT_TYPE:
           return <Select />;
         case INPUT_CURRENCY_NUMBER:
@@ -112,7 +113,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
                 className="shadow-lg"
                 onValueChange={(value, name) => onChangeValue(value)}
                 autoFocus={true}
-                ref={inputRef}
+                // ref={inputRef}
               />
             </div>
           );

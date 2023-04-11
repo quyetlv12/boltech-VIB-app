@@ -32,6 +32,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues
   return (
     <>
       <div className={`${inputStatus ? "hidden" : "block"} ${className}`}>
+        {/* LIST COMPANY INSURANCE */}
         {logo && (
           <div className="border-b-[1px] border-[#F3F4F6] px-[20px]  bg-[#fff] py-[10px] flex items-center gap-5">
             <Image src={step0data.icon} alt="logo pjico" width={40} />
@@ -44,21 +45,21 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues
             </div>
           </div>
         )}
-
+        {/* LIST ROW FILED */}
         {info.map((_elt: INPUT_DATA, index: number) => {
           return (
             <div
               key={index}
               className="flex justify-between px-3 h-[70px] border-b-[1px] border-[#F3F4F6] items-center bg-[#fff] shadow-md shadow-[#F3F4F6]"
             >
-              <span
+              <div
                 className={`w-2/4 text-[15px] capitalize ${_elt.typeInput === INPUT_UPLOAD_IMAGE && "font-normal"
                   }`}
                 {...register(_elt.key_form)}
               >
                 {_elt.content}
-              </span>
-              <div className="flex items-center gap-3 w-1/4 justify-end">
+              </div>
+              <div className="flex items-center gap-3 w-2/4 justify-end">
                 {_elt.typeInput !== INPUT_UPLOAD_IMAGE ? (
                   <span
                     className="font-semibold"
@@ -87,7 +88,6 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues
                     ))}
                   </div>
                 )}
-
                 <Image src={Arrow} alt="arrow" />
               </div>
             </div>

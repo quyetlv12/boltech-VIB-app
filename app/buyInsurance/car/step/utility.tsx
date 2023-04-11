@@ -38,7 +38,7 @@ export const CUSTOM_FIELD: INPUT_DATA[] = [
   {
     content: "năm sản xuất",
     key_form: KEY_YEAR,
-    typeInput: INPUT_NUMBER_TYPE,
+    typeInput: INPUT_DATE_TYPE,
   },
   {
     content: "giá trị xe",

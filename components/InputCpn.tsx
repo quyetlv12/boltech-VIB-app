@@ -13,18 +13,18 @@ import { INPUT_DATA } from "interfaces/insurances";
 import { FC, useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import CurrencyInput from "react-currency-input-field";
-import { getInputData, getInputStatus, getStep1Data, turnOffInput } from "store/buyInsurance";
+import { getBrands, getCarTypes, getInputData, getInputStatus, getStep1Data, turnOffInput } from "store/buyInsurance";
 import styled from "styled-components";
 import DatePicker from "./DatePicker";
 import Select from "./Select";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "./Button";
-import { KEY_SEATS } from "app/buyInsurance/car/step/utility";
+import { KEY_BRAND, KEY_CAR_TYPE, KEY_SEATS } from "app/buyInsurance/car/step/utility";
 interface Props {
   value?: number | undefined;
   placeholder?: string;
-  setValue? : any,
-  getValues? : any
+  setValue?: any,
+  getValues?: any
 }
 const InputStyled = styled.div`
   input {
@@ -40,21 +40,35 @@ const InputStyled = styled.div`
     padding: 0 2%;
   }
 `;
-const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues }) => {
+const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }) => {
   const inputStatus = useAppSelector(getInputStatus);
   const inputData: INPUT_DATA = useAppSelector(getInputData);
+  const car_types = useAppSelector(getCarTypes);
+  const car_brands = useAppSelector(getBrands);
   const dispatch = useAppDispatch()
   const {
-    key_form , typeInput , content
+    key_form, typeInput, content
   } = inputData
   const inputRef = useRef<HTMLInputElement>(null);
-  const step1Data = useAppSelector(getStep1Data)
   const [inputValue, setInputValue] = useState('')
-  const onChangeValue = (value:any) => {
-    console.log("value" , value);
-    
+
+  const onChangeValue = (value: any) => {
     setInputValue(value)
   }
+  const getArrayListSelect = (key: string) => {
+    let _arr: [] = []
+    switch (key) {
+      case KEY_CAR_TYPE:
+        _arr = car_types
+        break;
+      case KEY_BRAND:
+        _arr = car_brands
+        break;
+      default:
+        break;
+    }
+    return _arr
+  }  
   const RenderInput = () => {
     if (!isObjectEmpty(inputData)) {
       switch (inputData.typeInput) {
@@ -77,7 +91,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
                   Nhập {inputData.content}
                 </span>
                 <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue}
-                 />
+                />
               </div>
             </div>
           );
@@ -95,9 +109,9 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
             </div>
           );
         case INPUT_DATE_TYPE:
-          return <DatePicker setValue={setValue} key={key_form} setInputValue={setInputValue} inputValue={inputValue} />;
+          return <DatePicker setValue={setValue} key_form={'year'} setInputValue={setInputValue}  inputValue={inputValue} getValues={getValues} />;
         case INPUT_SELECT_TYPE:
-          return <Select />;
+          return <Select arrList={getArrayListSelect(key_form)} getValues={getValues}  key_form={key_form} setValue={setValue}  setInputValue={setInputValue} />;
         case INPUT_CURRENCY_NUMBER:
           return (
             <div className="relative mt-4">
@@ -113,7 +127,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
                 className="shadow-lg"
                 onValueChange={(value, name) => onChangeValue(value)}
                 autoFocus={true}
-                // ref={inputRef}
+              // ref={inputRef}
               />
             </div>
           );
@@ -123,7 +137,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
     }
   };
   const onClickSubmit = () => {
-    setValue(key_form , inputValue)    
+    setValue(key_form, inputValue)
     dispatch(turnOffInput())
   }
   useEffect(() => {
@@ -138,7 +152,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
     <InputStyled>
       <div>
         {/* ==========title========= */}
-        <span className="mb-3 font-semibold text-[20px] px-2">Nhập {inputData.content}</span>
+        {/* <span className="mb-3 font-semibold text-[20px] px-2">Nhập {inputData.content}</span> */}
         {/* =============input ======== */}
         <div className="px-2">
           {RenderInput()}
@@ -149,7 +163,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
               name={"Áp dụng"}
               type="button"
               className="w-full"
-              hiddenBtn={true}
+              // hiddenBtn={true}
               onClick={onClickSubmit}
             />
           </div>

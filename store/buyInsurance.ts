@@ -13,7 +13,8 @@ export interface BuyInsuranceState {
   maxStep: number;
   isInput: boolean;
   inputData : object;
-  selectArr : [];
+  carTypes : [];
+  brands : [];
 }
 
 export const initialState: BuyInsuranceState = {
@@ -28,7 +29,8 @@ export const initialState: BuyInsuranceState = {
   maxStep: 3,
   isInput: false,
   inputData : {},
-  selectArr : [] , 
+  carTypes : [] , 
+  brands : []
 };
 
 const buyInsurance = createSlice({
@@ -78,6 +80,20 @@ const buyInsurance = createSlice({
     ) => {
       state.isInput = false;
     },
+    setCarType : (
+      state: Draft<typeof initialState>, 
+      action: PayloadAction<any>
+      
+    ) => {
+      state.carTypes = action.payload;
+    },
+    setBrands :  (
+      state: Draft<typeof initialState>, 
+      action: PayloadAction<any>
+      
+    ) => {
+      state.brands = action.payload;
+    },
   },
 });
 // Selectors
@@ -87,7 +103,8 @@ export const getStep0data = (state: any) => state.buyInsurance.step0data;
 export const getMaxStep = (state: any) => state.buyInsurance.maxStep;
 export const getInputStatus = (state: any) => state.buyInsurance.isInput;
 export const getInputData = (state: any) => state.buyInsurance.inputData;
-export const getArrSelect = (state: any) => state.buyInsurance.selectArr;
+export const getCarTypes = (state: any) => state.buyInsurance.carTypes;
+export const getBrands = (state: any) => state.buyInsurance.brands;
 export const getStep1Data = (state : any ) => state.buyInsurance.step_1
 
 // Reducers and actions
@@ -98,5 +115,7 @@ export const {
   resetStepData,
   turnOnInput,
   turnOffInput,
+  setCarType,
+  setBrands
 } = buyInsurance.actions;
 export default buyInsurance.reducer;

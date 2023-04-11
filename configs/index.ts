@@ -1,0 +1,1 @@
+export const API_CAR_TYPE = '/nth/datacollection/api/authenticate/car-manufacturers'

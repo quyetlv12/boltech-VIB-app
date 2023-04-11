@@ -1,5 +1,5 @@
 "use client";
-
+import { yupResolver } from '@hookform/resolvers/yup';
 import BannerStep0 from "@components/BannerStep0";
 import Footer from "@components/Footer";
 import CurrencyInputCpn from "@components/InputCpn";
@@ -10,6 +10,7 @@ import Step1 from "./step/step1";
 import Step2 from "./step/step2";
 import Step3 from "./step/step3";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { validate } from './yupGlobal';
 type Inputs = {
   carName: string,
   exampleRequired: string,
@@ -18,7 +19,15 @@ const BuyCarInsurance = () => {
   const step = useAppSelector(getStep);
   const inputStatus = useAppSelector(getInputStatus)
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, watch , setValue , getValues, formState: { errors } } = useForm<Inputs>();
+  const { register, handleSubmit, watch, setValue, getValues, formState: { errors }, control } = useForm<Inputs>(
+    {
+      defaultValues: {
+
+      },
+      mode: 'onChange',
+      resolver: yupResolver(validate)
+    }
+  );
   const onSubmit: SubmitHandler<Inputs> = data => {
     console.log(data);
   }
@@ -27,11 +36,11 @@ const BuyCarInsurance = () => {
       case 0:
         return <BannerStep0 />;
       case 1:
-        return <Step1 register={register} getValues={getValues} />;
+        return <Step1 register={register} getValues={getValues} errors={errors} control={control} />;
       case 2:
-        return <Step2 register={register} getValues={getValues}/>;
+        return <Step2 register={register} getValues={getValues} errors={errors} control={control} />;
       case 3:
-        return <Step3 register={register} getValues={getValues}/>;
+        return <Step3 register={register} getValues={getValues} errors={errors} control={control} />;
       default:
         break;
     }
@@ -43,7 +52,7 @@ const BuyCarInsurance = () => {
   return (
     <main>
       <form onSubmit={handleSubmit(onSubmit)}>
-      {!inputStatus ? renderSceen() : <CurrencyInputCpn setValue={setValue} getValues={getValues} />}
+        {!inputStatus ? renderSceen() : <CurrencyInputCpn setValue={setValue} getValues={getValues} />}
       </form>
       <Footer />
     </main>

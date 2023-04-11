@@ -23,6 +23,7 @@ export const KEY_YEAR = "year";
 export const KEY_ADDONS = "addons";
 export const KEY_VALUE = "value";
 export const KEY_RESPONSIBILITY = "responsibility";
+export const KEY_BRAND = 'brand'
 
 export const CUSTOM_FIELD: INPUT_DATA[] = [
   {
@@ -33,7 +34,12 @@ export const CUSTOM_FIELD: INPUT_DATA[] = [
   {
     content: "loại xe",
     key_form: KEY_CAR_TYPE,
-    typeInput: INPUT_STRING_TYPE,
+    typeInput: INPUT_SELECT_TYPE,
+  },
+  {
+    content: "dòng xe xe",
+    key_form: KEY_BRAND,
+    typeInput: INPUT_SELECT_TYPE,
   },
   {
     content: "năm sản xuất",

@@ -17,7 +17,7 @@ const PackageSelect = () => {
             </p>
           </div>
         </div>
-        <div className="border-b-[1px] text-[15px] flex justify-between border-[#F3F4F6] px-[20px] py-[10px]">
+        {/* <div className="border-b-[1px] text-[15px] flex justify-between border-[#F3F4F6] px-[20px] py-[10px]">
           <span className=" text-[#4D5562] w-3/4">Bảo hiểm bắt buộc TNDS</span>
           <span className="font-medium w-1/4 text-right">Không</span>
         </div>
@@ -30,7 +30,7 @@ const PackageSelect = () => {
         <div className="border-b-[1px] text-[15px] flex justify-between border-[#F3F4F6] px-[20px] py-[10px]">
           <span className=" text-[#4D5562] w-3/4">Giá trị bảo hiểm vật chất xe</span>
           <span className="font-medium w-1/4 text-right">Không</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

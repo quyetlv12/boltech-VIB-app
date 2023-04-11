@@ -4,9 +4,11 @@ import { CUSTOM_FIELD, CUSTOM_FIELD_STEP_2_1, CUSTOM_FIELD_STEP_2_2, CUSTOM_FIEL
 import { FC } from "react";
 interface Props {
   register : any ,
-  getValues : any
+  getValues : any,
+  errors : any,
+  control : any
 }
-const Step2:FC<Props> = ({register , getValues}) => {
+const Step2:FC<Props> = ({register , getValues , errors}) => {
   return (
     <div>
       <div>
@@ -15,14 +17,14 @@ const Step2:FC<Props> = ({register , getValues}) => {
           subTitle="Vui lòng điền thông tin chính xác"
           className="mb-3"
         />
-        <RowInfo info={CUSTOM_FIELD_STEP_2_1} register={register} getValues={getValues} />
+        <RowInfo info={CUSTOM_FIELD_STEP_2_1} register={register} getValues={getValues} errors={errors}/>
         <Title
           title="Thông tin xe bổ sung"
           size="16"
           className="mt-3 mb-3"
         />
-        <RowInfo info={CUSTOM_FIELD_STEP_2_2} register={register} getValues={getValues} />
-        <RowInfo info={CUSTOM_FIELD_STEP_2_3} className="mt-[30px]" register={register} getValues={getValues} />
+        <RowInfo info={CUSTOM_FIELD_STEP_2_2} register={register} getValues={getValues}  errors={errors} />
+        <RowInfo info={CUSTOM_FIELD_STEP_2_3} className="mt-[30px]" register={register} getValues={getValues}  errors={errors} />
         <Title
           title="Hình ảnh & giấy tờ xe"
           className="mt-3 mb-2"
@@ -32,13 +34,13 @@ const Step2:FC<Props> = ({register , getValues}) => {
           size="16"
           className="mt-3"
         />
-        <RowInfo info={CUSTOM_FIELD_STEP_2_4} className="mt-[30px]" register={register} getValues={getValues} />
+        <RowInfo info={CUSTOM_FIELD_STEP_2_4} className="mt-[30px]" register={register} getValues={getValues}  errors={errors} />
          <Title
           title="Hình ảnh xe"
           size="16"
           className="mt-5"
         />
-        <RowInfo info={CUSTOM_FIELD_STEP_2_5} className="mt-[30px]" register={register} getValues={getValues} />
+        <RowInfo info={CUSTOM_FIELD_STEP_2_5} className="mt-[30px]" register={register} getValues={getValues}  errors={errors}/>
       </div>
     </div>
   );

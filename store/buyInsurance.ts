@@ -28,7 +28,7 @@ export const initialState: BuyInsuranceState = {
   maxStep: 3,
   isInput: false,
   inputData : {},
-  selectArr : []
+  selectArr : [] , 
 };
 
 const buyInsurance = createSlice({
@@ -88,6 +88,7 @@ export const getMaxStep = (state: any) => state.buyInsurance.maxStep;
 export const getInputStatus = (state: any) => state.buyInsurance.isInput;
 export const getInputData = (state: any) => state.buyInsurance.inputData;
 export const getArrSelect = (state: any) => state.buyInsurance.selectArr;
+export const getStep1Data = (state : any ) => state.buyInsurance.step_1
 
 // Reducers and actions
 export const {

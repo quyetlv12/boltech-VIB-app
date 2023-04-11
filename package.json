@@ -24,6 +24,7 @@
     "react-calendar": "^4.0.0",
     "react-currency-input-field": "^3.6.10",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-redux": "^8.0.5",
     "redux-batched-subscribe": "^0.1.6",
     "redux-logger": "^3.0.6",

@@ -19,9 +19,9 @@ import gdkIcon from "../../../../assests/insurance/Mask Group.png";
 
 export const KEY_SEATS = "seat";
 export const KEY_CAR_TYPE = "type";
-export const KEY_YEARR = "year";
+export const KEY_YEAR = "year";
 export const KEY_ADDONS = "addons";
-export const KEY_VALUE = "seat";
+export const KEY_VALUE = "value";
 export const KEY_RESPONSIBILITY = "responsibility";
 
 export const CUSTOM_FIELD: INPUT_DATA[] = [
@@ -33,17 +33,17 @@ export const CUSTOM_FIELD: INPUT_DATA[] = [
   {
     content: "loại xe",
     key_form: KEY_CAR_TYPE,
-    typeInput: INPUT_DATE_TYPE,
+    typeInput: INPUT_STRING_TYPE,
   },
   {
     content: "năm sản xuất",
-    key_form: KEY_SEATS,
-    typeInput: INPUT_SELECT_TYPE,
+    key_form: KEY_YEAR,
+    typeInput: INPUT_NUMBER_TYPE,
   },
   {
     content: "giá trị xe",
     key_form: KEY_VALUE,
-    typeInput: INPUT_SELECT_TYPE,
+    typeInput: INPUT_CURRENCY_NUMBER,
   },
   {
     content: "mức trách nhiệm BH tai nạn người ngồi",

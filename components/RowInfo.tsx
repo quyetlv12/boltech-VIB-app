@@ -10,11 +10,12 @@ interface Props {
   info: ROW_INFO[];
   className?: string;
   logo?: boolean;
+  register?: any;
+  getValues?: any
 }
-const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
+const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues }) => {
   const step0data = useAppSelector(getStep0data)
-  console.log("step0" ,step0data);
-  
+
   const inputStatus = useAppSelector(getInputStatus);
   const dispath = useAppDispatch();
 
@@ -27,6 +28,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
       input.setAttribute("autoFocus", "autoFocus");
     }
   };
+
   return (
     <>
       <div className={`${inputStatus ? "hidden" : "block"} ${className}`}>
@@ -50,9 +52,9 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
               className="flex justify-between px-3 h-[70px] border-b-[1px] border-[#F3F4F6] items-center bg-[#fff] shadow-md shadow-[#F3F4F6]"
             >
               <span
-                className={`w-2/4 text-[15px] capitalize ${
-                  _elt.typeInput === INPUT_UPLOAD_IMAGE && "font-normal"
-                }`}
+                className={`w-2/4 text-[15px] capitalize ${_elt.typeInput === INPUT_UPLOAD_IMAGE && "font-normal"
+                  }`}
+                {...register(_elt.key_form)}
               >
                 {_elt.content}
               </span>
@@ -62,7 +64,10 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
                     className="font-semibold"
                     onClick={() => handleInputValue(_elt)}
                   >
-                    Nhập
+                    {
+                      getValues(_elt.key_form) ? getValues(_elt.key_form) : 'Nhập'
+                    }
+
                   </span>
                 ) : (
                   <div className="flex gap-5">
@@ -72,7 +77,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false }) => {
                         key={index}
                       >
                         <Image
-                          src={__elt?.icon ? __elt?.icon : '' }
+                          src={__elt?.icon ? __elt?.icon : ''}
                           alt={"upload image"}
                           width={200}
                           key={index}

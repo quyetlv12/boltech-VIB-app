@@ -6,19 +6,25 @@ import {
   INPUT_STRING_TYPE,
   INPUT_UPLOAD_IMAGE,
   isObjectEmpty,
+  useAppDispatch,
   useAppSelector
 } from "@constants";
 import { INPUT_DATA } from "interfaces/insurances";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import CurrencyInput from "react-currency-input-field";
-import { getInputData, getInputStatus } from "store/buyInsurance";
+import { getInputData, getInputStatus, getStep1Data, turnOffInput } from "store/buyInsurance";
 import styled from "styled-components";
 import DatePicker from "./DatePicker";
 import Select from "./Select";
+import { SubmitHandler, useForm } from "react-hook-form";
+import Button from "./Button";
+import { KEY_SEATS } from "app/buyInsurance/car/step/utility";
 interface Props {
   value?: number | undefined;
   placeholder?: string;
+  setValue? : any,
+  getValues? : any
 }
 const InputStyled = styled.div`
   input {
@@ -34,11 +40,21 @@ const InputStyled = styled.div`
     padding: 0 2%;
   }
 `;
-const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
+const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues }) => {
   const inputStatus = useAppSelector(getInputStatus);
   const inputData: INPUT_DATA = useAppSelector(getInputData);
-  console.log("inputData", inputData);
-
+  const dispatch = useAppDispatch()
+  const {
+    key_form , typeInput , content
+  } = inputData
+  const inputRef = useRef<HTMLInputElement>(null);
+  const step1Data = useAppSelector(getStep1Data)
+  const [inputValue, setInputValue] = useState('')
+  const onChangeValue = (value:any) => {
+    console.log("value" , value);
+    
+    setInputValue(value)
+  }
   const RenderInput = () => {
     if (!isObjectEmpty(inputData)) {
       switch (inputData.typeInput) {
@@ -49,7 +65,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
                 <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                   Nhập {inputData.content}
                 </span>
-                <input type="tel" />
+                <input type="tel" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} ref={inputRef} />
               </div>
             </div>
           );
@@ -60,7 +76,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
                 <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                   Nhập {inputData.content}
                 </span>
-                <input type="string" />
+                <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} ref={inputRef} />
               </div>
             </div>
           );
@@ -91,11 +107,12 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
                 id="input-number"
                 name="input-name"
                 placeholder={""}
-                defaultValue={value}
+                defaultValue={inputValue}
                 decimalsLimit={2}
                 className="shadow-lg"
-                onValueChange={(value, name) => console.log(value, name)}
+                onValueChange={(value, name) => onChangeValue(value)}
                 autoFocus={true}
+                ref={inputRef}
               />
             </div>
           );
@@ -104,17 +121,39 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder }) => {
       }
     }
   };
-
+  const onClickSubmit = () => {
+    setValue(key_form , inputValue)    
+    dispatch(turnOffInput())
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
+    setInputValue(getValues(key_form))
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, [inputStatus])
-  
+
   return (
-    <InputStyled className={`relative ${inputStatus ? "" : "hidden"} px-3`}>
-      {/* ==========title========= */}
-      {/* <span className="mb-3 font-semibold text-[20px]">Nhập {inputData.content}</span> */}
-      {/* =============input ======== */}
-      {RenderInput()}
+    <InputStyled>
+      <div>
+        {/* ==========title========= */}
+        <span className="mb-3 font-semibold text-[20px] px-2">Nhập {inputData.content}</span>
+        {/* =============input ======== */}
+        <div className="px-2">
+          {RenderInput()}
+        </div>
+        <div className="fixed bg-[#fff] bottom-[5%] w-full">
+          <div className="px-2">
+            <Button
+              name={"Áp dụng"}
+              type="button"
+              className="w-full"
+              hiddenBtn={true}
+              onClick={onClickSubmit}
+            />
+          </div>
+        </div>
+      </div>
     </InputStyled>
   );
 };

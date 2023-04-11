@@ -46,20 +46,17 @@ const Footer: FC<Props> = () => {
   return (
     <div className={`w-full py-[5px] footer__main ${inputStatus ? 'fixed bg-[#fff] bottom-0' : '' }`}>
       <div className="flex justify-center w-full px-[5%]">
-        <Button
-          name={textBtnFooter}
+        {
+          step !== 0 ? null  :  <Button
+          name={"Tiếp tục"}
           className="w-full"
           hiddenBtn={true}
-          onClick={handleNextStep}
-        />{" "}
-      </div>
-      {step === 3 && (
-        <Title
-          title="Chúng tôi không thu bất kỳ khoản phí thanh toán nào!"
-          className="mt-3 text-center"
-          size="13"
+          onClick={step === 0 ? handleNextStep : undefined }
+          type={step > 0 ? 'submit' : 'button' }
         />
-      )}
+        }
+       
+      </div>
       <p className={`text-[${TEXT_FOOTER_COLOR}] text-[12px] text-center mt-3`}>
         Hotline: +84 244 4582 274
       </p>

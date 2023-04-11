@@ -142,7 +142,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder , setValue , getValues
         <div className="px-2">
           {RenderInput()}
         </div>
-        <div className="fixed bg-[#fff] bottom-[5%] w-full">
+        <div className="fixed bg-[#fff] bottom-[7%] w-full">
           <div className="px-2">
             <Button
               name={"Áp dụng"}

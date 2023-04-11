@@ -8,8 +8,12 @@ import {
   CUSTOM_FIELD_STEP_3_4,
   CUSTOM_FIELD_STEP_3_5,
 } from "./utility";
-
-const Step3 = () => {
+import { FC } from "react";
+interface Props {
+  register : any ,
+  getValues : any
+}
+const Step3:FC<Props> = ({register , getValues}) => {
   return (
     <div>
       <Title
@@ -18,19 +22,19 @@ const Step3 = () => {
         className="mb-3"
       />
       <Title title="Thông tin bảo hiểm" size="16" className="mt-3 mb-3" />
-      <RowInfo info={CUSTOM_FIELD_STEP_3_1} logo={true} />
+      <RowInfo info={CUSTOM_FIELD_STEP_3_1} logo={true} register={register} getValues={getValues} />
       <Title
         title="Thông tin người mua (trên 18 tuổi)"
         size="16"
         className="mt-3 mb-3"
       />
-      <RowInfo info={CUSTOM_FIELD_STEP_3_2} />
+      <RowInfo info={CUSTOM_FIELD_STEP_3_2} register={register} getValues={getValues} />
       <Title title="Thông tin nhận dạng" size="16" className="mt-3 mb-3" />
-      <RowInfo info={CUSTOM_FIELD_STEP_3_3} />
+      <RowInfo info={CUSTOM_FIELD_STEP_3_3} register={register} getValues={getValues} />
       <Title title="Thông tin liên lạc" size="16" className="mt-3 mb-3" />{" "}
-      <RowInfo info={CUSTOM_FIELD_STEP_3_4} />
+      <RowInfo info={CUSTOM_FIELD_STEP_3_4} register={register} getValues={getValues} />
       <Title title="Địa chỉ liên hệ" size="16" className="mt-3 mb-3" />
-      <RowInfo info={CUSTOM_FIELD_STEP_3_5} />
+      <RowInfo info={CUSTOM_FIELD_STEP_3_5} register={register} getValues={getValues} />
     </div>
   );
 };

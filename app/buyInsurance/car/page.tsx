@@ -29,9 +29,9 @@ const BuyCarInsurance = () => {
       case 1:
         return <Step1 register={register} getValues={getValues} />;
       case 2:
-        return <Step2 />;
+        return <Step2 register={register} getValues={getValues}/>;
       case 3:
-        return <Step3 />;
+        return <Step3 register={register} getValues={getValues}/>;
       default:
         break;
     }

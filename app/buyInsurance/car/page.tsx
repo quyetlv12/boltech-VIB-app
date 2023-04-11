@@ -24,7 +24,7 @@ const BuyCarInsurance = () => {
       defaultValues: {
 
       },
-      mode: 'onChange',
+      mode: 'all',
       resolver: yupResolver(validate)
     }
   );

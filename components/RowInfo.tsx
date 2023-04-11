@@ -16,6 +16,8 @@ interface Props {
   control?: any
 }
 const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues, errors, control }) => {
+  console.log("errors" ,errors);
+  
   const step0data = useAppSelector(getStep0data)
   const inputStatus = useAppSelector(getInputStatus);
   const dispath = useAppDispatch();
@@ -56,10 +58,10 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, register, getValues
             <Controller
               name={_elt.key_form}
               control={control}
+              key={index}
               render={({ field }) =>
                 <>
                   <div
-                    key={index}
                     className={`flex justify-between px-3 h-[70px]  items-center shadow-md shadow-[#F3F4F6] ${_isError}`}
                   >
                     <div

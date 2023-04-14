@@ -26,3 +26,22 @@ export const validate = yup.object().shape({
     .string()
     .required('Required'),
 })
+
+
+export const _defaultValue = {
+  step_1 : {
+    [KEY_CAR_TYPE] : '' ,
+    [KEY_BRAND] : ''  ,
+    [KEY_SEATS] : '' ,
+    [KEY_VALUE] : '',
+    [KEY_RESPONSIBILITY] : '',
+    [KEY_ADDONS] : '',
+    [KEY_YEAR] : ''
+  },
+  step_2 : {
+
+  },
+  step_3 : {
+
+  }
+}

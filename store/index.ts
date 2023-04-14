@@ -1,4 +1,4 @@
-import thunk from "redux-thunk";
+import thunkMiddleware  from "redux-thunk";
 import {
   Action,
   combineReducers,
@@ -21,13 +21,14 @@ const persistConfig = {
   storage,
 };
 
+
 const debounceNotify = _.debounce((notify: any) => notify());
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export function makeStore() {
   return configureStore({
     reducer: persistedReducer,
     devTools: true,
-    middleware: process.env.NODE_ENV !== 'development' ? [thunk, logger] : undefined,
+    middleware: process.env.NODE_ENV !== 'production' ? [thunkMiddleware] : [thunkMiddleware ],
     enhancers: [batchedSubscribe(debounceNotify)],
   });
 }

@@ -12,7 +12,7 @@ const ProcessBuyInsurance = () => {
           <div
           key={index}
             className={`bg-[${
-              step >= _elt ? `#000`  : `#fff`
+              step >= _elt ? `#338955`  : `#fff`
             }] h-[5px] w-1/3 border-l-1 outline-0 border-[#000]`}
           >
           </div>

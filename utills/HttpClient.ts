@@ -1,18 +1,30 @@
-import Axios from 'axios'
-import {API_TIME_OUT} from "@constants";
-import {store} from "../store";
-import {showLoading, hideLoading} from "../store/app";
+import Axios, { AxiosRequestConfig } from 'axios'
+import { API_TIME_OUT } from "@constants";
+import { store } from "../store";
+import { showLoading, hideLoading } from "../store/app";
+
 
 
 const HttpClient = Axios.create({
     timeout: API_TIME_OUT,
-    baseURL: process.env.NEXT_PUBLIC_API_URL
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-// HttpClient.interceptors.request.use((config: { headers: { Authorization: string; }; isBackgroundRequest: any; }) => {
+HttpClient.interceptors.request.use((config) => {
+    const _config = { ...config }
+    // const token = store.getState().app.auth?.authToken
+    // if (token) {
+    //     config.headers.Authorization = `Bearer ${token}`
+    //     config.headers.appId = process.env.NEXT_APP_ID
+    // }
+    _config.headers['appId'] = process.env.NEXT_PUBLIC_APP_ID
+    return _config;
+});
+// HttpClient.interceptors.request.use((config: { headers: { Authorization: string , appId : string | undefined }; isBackgroundRequest: any; }) => {
 //     const token = store.getState().app.auth?.authToken
 //     if (token) {
 //         config.headers.Authorization = `Bearer ${token}`
+//         config.headers.appId = process.env.NEXT_APP_ID
 //     }
 //     // @ts-ignore
 //     if (config.isBackgroundRequest) {
@@ -51,4 +63,4 @@ const HttpClient = Axios.create({
 //     }
 // )
 
-export {HttpClient}
+export { HttpClient }

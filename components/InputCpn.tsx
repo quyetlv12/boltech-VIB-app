@@ -1,4 +1,5 @@
 import {
+  ADD_ONS_CONFIG,
   INPUT_CURRENCY_NUMBER,
   INPUT_DATE_TYPE,
   INPUT_NUMBER_TYPE,
@@ -9,7 +10,7 @@ import {
   useAppDispatch,
   useAppSelector
 } from "@constants";
-import { INPUT_DATA } from "interfaces/insurances";
+import { ARR_LIST_SELECT_PROPS, INPUT_DATA } from "interfaces/insurances";
 import { FC, useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import CurrencyInput from "react-currency-input-field";
@@ -19,12 +20,14 @@ import DatePicker from "./DatePicker";
 import Select from "./Select";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "./Button";
-import { KEY_BRAND, KEY_CAR_TYPE, KEY_SEATS } from "app/buyInsurance/car/step/utility";
+import { KEY_ADDONS, KEY_BRAND, KEY_CAR_TYPE, KEY_SEATS } from "app/buyInsurance/car/step/utility";
 interface Props {
   value?: number | undefined;
   placeholder?: string;
   setValue?: any,
-  getValues?: any
+  getValues?: any,
+  register? : any,
+  setError? : any , 
 }
 const InputStyled = styled.div`
   input {
@@ -40,7 +43,7 @@ const InputStyled = styled.div`
     padding: 0 2%;
   }
 `;
-const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }) => {
+const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues  , setError}) => {
   const inputStatus = useAppSelector(getInputStatus);
   const inputData: INPUT_DATA = useAppSelector(getInputData);
   const car_types = useAppSelector(getCarTypes);
@@ -56,13 +59,16 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
     setInputValue(value)
   }
   const getArrayListSelect = (key: string) => {
-    let _arr: [] = []
+    let _arr: ARR_LIST_SELECT_PROPS[] = []
     switch (key) {
       case KEY_CAR_TYPE:
         _arr = car_types
         break;
       case KEY_BRAND:
         _arr = car_brands
+        break;
+      case KEY_ADDONS:
+        _arr = ADD_ONS_CONFIG
         break;
       default:
         break;
@@ -90,7 +96,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
                 <span className="placeholder__input text-[12px] text-[#9DA3AE]">
                   Nhập {inputData.content}
                 </span>
-                <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue}
+                <input type="string" onChange={(e) => onChangeValue(e.target.value)} defaultValue={inputValue} 
                 />
               </div>
             </div>
@@ -112,7 +118,7 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
           return <DatePicker setValue={setValue} key_form={'year'} setInputValue={setInputValue}  inputValue={inputValue} getValues={getValues} />;
         case INPUT_SELECT_TYPE:
           return <Select arrList={getArrayListSelect(key_form)} getValues={getValues}  key_form={key_form} setValue={setValue}  setInputValue={setInputValue} />;
-        case INPUT_CURRENCY_NUMBER:
+        case INPUT_CURRENCY_NUMBER:          
           return (
             <div className="relative mt-4">
               <span className="placeholder__input text-[12px] text-[#9DA3AE]">
@@ -127,7 +133,6 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
                 className="shadow-lg"
                 onValueChange={(value, name) => onChangeValue(value)}
                 autoFocus={true}
-              // ref={inputRef}
               />
             </div>
           );
@@ -138,11 +143,12 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
   };
   const onClickSubmit = () => {
     setValue(key_form, inputValue)
+    setError(key_form , undefined)
     dispatch(turnOffInput())
-  }
+  }  
   useEffect(() => {
-    window.scrollTo(0, 0)
     setInputValue(getValues(key_form))
+    window.scrollTo(0, 0)    
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -161,9 +167,8 @@ const CurrencyInputCpn: FC<Props> = ({ value, placeholder, setValue, getValues }
           <div className="px-2">
             <Button
               name={"Áp dụng"}
-              type="button"
+              type="submit"
               className="w-full"
-              // hiddenBtn={true}
               onClick={onClickSubmit}
             />
           </div>

@@ -11,7 +11,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-        'brand-gradient': 'linear-gradient(94.64deg, #FE9B25 3.75%, #FF5922 95.77%)',
+        'brand-gradient': 'linear-gradient(94.64deg, #106d5a 10.75%, #338955 87.77%)',
       }),
     },
   },

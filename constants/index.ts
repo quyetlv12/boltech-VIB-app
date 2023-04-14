@@ -150,6 +150,12 @@ export const isShowInput = () => {
     return getState() 
   }
 }
+export const fillValueToForm = () => {
+  
+}
+export const isAuthenticatePath = (url:string) => {
+  return 
+}
 export const stepArray:number[] = [1,2,3]
 export const INPUT_NUMBER_TYPE:string = 'number'
 export const INPUT_SELECT_TYPE:string = 'select'
@@ -167,3 +173,50 @@ export const BUY_NOW:string = 'Mua ngay'
 export const isObjectEmpty = (object:object = {}) => {
   return _.isEmpty(object);
 }
+
+
+export const ADD_ONS_CONFIG = [
+  {
+      "addonCode": "BS01",
+      "name": "Bảo hiểm thay thế mới",
+      "equalValue" : "BS02",
+      "equalField" : "addonCode"
+  },
+  {
+      "addonCode": "BS02",
+      "name": "Bảo hiểm lựa chọn cơ sở sửa chữa",
+      "equalValue" : "BS02",
+      "equalField" : "addonCode"
+  },
+  {
+      "addonCode": "BS06",
+      "name": "Bảo hiểm thủy kích",
+      "equalValue" : "BS02",
+      "equalField" : "addonCode"
+  },
+  {
+      "addonCode": "BS09",
+      "name": "Bảo hiểm xe chuyên dùng",
+      "equalValue" : "BS02",
+      "equalField" : "addonCode"
+  }
+]
+
+
+// REDUX KEY 
+
+export const KEY_STEP:string = 'step' 
+export const KEY_STEP_DATA:string = 'stepData' 
+export const KEY_TYPE:string = 'type' 
+export const KEY_STEP_0:string = 'step0data' 
+export const KEY_CONTRACT_ID:string = 'contractId' 
+export const KEY_STEP_1:string = 'step_1' 
+export const KEY_STEP_2:string = 'step_2' 
+export const KEY_STEP_3:string = 'step_3' 
+export const KEY_MAX_STEP:string = 'maxStep' 
+export const KEY_IS_INPUT:string = 'isInput' 
+export const KEY_INPUT_DATA:string = 'inputData' 
+export const KEY_CAR_TYPES:string = 'carTypes' 
+export const KEY_BRANCH:string = 'brands' 
+export const KEY_CONTRACT_INFO:string = 'contractInfo' 
+export const KEY_VEHICELS:string = 'vehicels' 

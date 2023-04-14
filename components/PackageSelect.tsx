@@ -12,7 +12,7 @@ const PackageSelect = () => {
           <Image src={PjicoLogo} alt="logo pjico" width={50} />
           <div>
             <p>PJICO</p>
-            <p className="text-[#F47920] font-semibold text-[15px]">
+            <p className="text-[#338955] font-semibold text-[15px]">
               1,500,000 đ/năm
             </p>
           </div>

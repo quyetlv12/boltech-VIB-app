@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import { StaticImageData } from "next/image";
 
 export interface PRODUCT {
@@ -27,6 +28,7 @@ export interface INPUT_DATA {
   key_form: string,
   typeInput: string,
   iconArr?: ICON_OBJ[],
+  isShowSelectText? : boolean
 }
 export interface BRANS_PROPS {
   brand: string,
@@ -35,6 +37,32 @@ export interface BRANS_PROPS {
   name: string
 }
 export interface CAR_TYPE_PROPS {
-  name: string,
-  brands: BRANS_PROPS[]
+  name?: string,
+  brands?: BRANS_PROPS[]
+}
+export interface ARR_LIST_SELECT_PROPS {
+  name? : string , 
+  addonCode? : string,
+  equalValue? : string ,
+  equalField? : string,
+  brands? : []
+}
+export interface STEP_1_DATA_PROPS {
+  addons : string ;
+  brand : string ;
+  responsibility : number | string;
+  seat : number | string ;
+  year : string,
+  type : string;
+  value : number | string;
+}
+export interface CONTRACT_CREATE_PROPS {
+  contractType : string,
+  contractValue : number,
+  ownerId : number | null,
+  refId : number | null,
+  vehicleValue : number
+}
+export interface interceptorsProps extends AxiosRequestConfig {
+  appId : string
 }

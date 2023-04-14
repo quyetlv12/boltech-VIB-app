@@ -1,12 +1,13 @@
+'use client'
 import {
-    INPUT_CURRENCY_NUMBER,
-    INPUT_DATE_TYPE,
-    INPUT_NUMBER_TYPE,
-    INPUT_SELECT_TYPE,
-    INPUT_STRING_TYPE,
-    INPUT_UPLOAD_IMAGE
+  INPUT_CURRENCY_NUMBER,
+  INPUT_DATE_TYPE,
+  INPUT_NUMBER_TYPE,
+  INPUT_SELECT_TYPE,
+  INPUT_STRING_TYPE,
+  INPUT_UPLOAD_IMAGE
 } from "@constants";
-import { INPUT_DATA } from "interfaces/insurances";
+import { INPUT_DATA, STEP_1_DATA_PROPS } from "interfaces/insurances";
 import msIcon from "../../../../assests/insurance/MS-giaydkxe.png";
 import mtIcon from "../../../../assests/insurance/MT-giaydkxe.png";
 import mask1 from "../../../../assests/insurance/Mask Group-1.png";
@@ -24,7 +25,6 @@ export const KEY_ADDONS = "addons";
 export const KEY_VALUE = "value";
 export const KEY_RESPONSIBILITY = "responsibility";
 export const KEY_BRAND = 'brand'
-
 export const CUSTOM_FIELD: INPUT_DATA[] = [
   {
     content: "số ghế ngồi",
@@ -37,7 +37,7 @@ export const CUSTOM_FIELD: INPUT_DATA[] = [
     typeInput: INPUT_SELECT_TYPE,
   },
   {
-    content: "dòng xe xe",
+    content: "dòng xe",
     key_form: KEY_BRAND,
     typeInput: INPUT_SELECT_TYPE,
   },
@@ -60,6 +60,7 @@ export const CUSTOM_FIELD: INPUT_DATA[] = [
     content: "điều khoản mở rộng",
     key_form: KEY_ADDONS,
     typeInput: INPUT_SELECT_TYPE,
+    isShowSelectText : true
   },
 ];
 export const CUSTOM_FIELD_STEP_2_1: INPUT_DATA[] = [
@@ -306,3 +307,30 @@ export const CUSTOM_FIELD_STEP_3_5: INPUT_DATA[] = [
     typeInput: INPUT_SELECT_TYPE,
   },
 ];
+
+export const getObjectContract = (data:STEP_1_DATA_PROPS):object =>{  
+  const {value} = data
+  return {
+    "contractValue": Number(value),
+    "contractType": "CC",
+    "vehicleValue": Number(value),
+}
+}
+export const getObjectVehicel = (data:STEP_1_DATA_PROPS , contractId:string):object =>{
+  return {
+    "contractId": contractId,
+    "vehicleStatus": "OLD",
+    "numberPlate": "2312",
+    "usage": "KKD",
+    "issPlace": "VIETNAM",
+    "issDate": "2023-04-10T17:00:00.000Z",
+    "vehicleTypeId": 1,
+    "manufacturerName": "CUULONG",
+    "brandName": "DFA",
+    "initValue": 8000000000,
+    "contractValue": 8000000000,
+    "frameNo": "2123",
+    "machineNo": "232312",
+    "seats": 1
+  }
+}

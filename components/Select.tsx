@@ -1,10 +1,10 @@
 import { useAppDispatch } from '@constants';
 import { KEY_BRAND, KEY_CAR_TYPE } from 'app/buyInsurance/car/step/utility';
-import { BRANS_PROPS, CAR_TYPE_PROPS } from 'interfaces/insurances';
+import { ARR_LIST_SELECT_PROPS, BRANS_PROPS, CAR_TYPE_PROPS } from 'interfaces/insurances';
 import { FC, useEffect, useState } from 'react';
 import { setBrands } from 'store/buyInsurance';
 interface Props {
-    arrList: [],
+    arrList: ARR_LIST_SELECT_PROPS[],
     getValues: any,
     key_form: string,
     setValue: any,
@@ -13,8 +13,8 @@ interface Props {
 const Select: FC<Props> = ({ arrList, getValues, key_form, setValue, setInputValue }) => {
     const [selected, setSelected] = useState('')
     const dispatch = useAppDispatch()
-    const onSelect = (value: string, brands: any = []) => {
-        setSelected(value)
+    const onSelect = (value:string | undefined, brands: any = []) => {
+        setSelected(value || '')
         setInputValue(value)
         if (key_form === KEY_CAR_TYPE) {
             if (value !== getValues(key_form)) {

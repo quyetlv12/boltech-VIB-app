@@ -1,59 +1,53 @@
 "use client";
-import { yupResolver } from '@hookform/resolvers/yup';
 import BannerStep0 from "@components/BannerStep0";
 import Footer from "@components/Footer";
 import CurrencyInputCpn from "@components/InputCpn";
-import { useAppDispatch, useAppSelector } from "@constants";
+import { KEY_CONTRACT_ID, KEY_CONTRACT_INFO, KEY_STEP, KEY_STEP_1, KEY_VEHICELS, useAppDispatch, useAppSelector } from "@constants";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { getInputStatus, getStep, turnOffInput } from "store/buyInsurance";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { createContractService, updateContractService } from "services/buyCarInsurance";
+import { getContractId, getInputStatus, getStep, nextStep, turnOffInput, updateProps } from "store/buyInsurance";
 import Step1 from "./step/step1";
 import Step2 from "./step/step2";
 import Step3 from "./step/step3";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { validate } from './yupGlobal';
-type Inputs = {
-  carName: string,
-  exampleRequired: string,
-};
+import { getObjectContract } from "./step/utility";
+import { _defaultValue, validate } from './yupGlobal';
+import { STEP_1_DATA_PROPS } from "interfaces/insurances";
 const BuyCarInsurance = () => {
-  const step = useAppSelector(getStep);
-  const inputStatus = useAppSelector(getInputStatus)
+  //GET DATA FROM REDUX
+  const step = useAppSelector(getStep);  
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, watch, setValue, getValues, formState: { errors }, control } = useForm<Inputs>(
-    {
-      defaultValues: {
 
-      },
-      mode: 'all',
-      resolver: yupResolver(validate)
-    }
-  );
-  const onSubmit: SubmitHandler<Inputs> = data => {
-    console.log(data);
-  }
   const renderSceen = () => {
     switch (step) {
       case 0:
         return <BannerStep0 />;
       case 1:
-        return <Step1 register={register} getValues={getValues} errors={errors} control={control} />;
+        return <Step1 />;
       case 2:
-        return <Step2 register={register} getValues={getValues} errors={errors} control={control} />;
+        return <Step2/>;
       case 3:
-        return <Step3 register={register} getValues={getValues} errors={errors} control={control} />;
+        return <Step3/>;
       default:
-        break;
+        return <Step1 />;
     }
   };
   useEffect(() => {
     dispatch(turnOffInput());
-  }, []);
+    //fill value redux to hook form
+    // if (condition) {
 
+    // }
+  }, []);
   return (
     <main>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {!inputStatus ? renderSceen() : <CurrencyInputCpn setValue={setValue} getValues={getValues} />}
-      </form>
+      <div>
+        {
+          renderSceen()
+        }
+      </div>
       <Footer />
     </main>
   );

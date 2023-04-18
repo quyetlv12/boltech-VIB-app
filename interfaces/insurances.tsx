@@ -1,13 +1,14 @@
 import { AxiosRequestConfig } from "axios";
 import { StaticImageData } from "next/image";
+import { object } from "yup";
 
 export interface PRODUCT {
-  name: string;
-  icon: string | StaticImageData;
-  type: string;
-  slogan: string;
-  benefit: any[];
-  link: string;
+  name?: string;
+  icon?: string | StaticImageData | null | undefined;
+  type?: string;
+  slogan?: string;
+  benefit?: any[];
+  link?: string;
   logo?: StaticImageData | undefined;
 }
 export interface BENEFIT {
@@ -65,4 +66,33 @@ export interface CONTRACT_CREATE_PROPS {
 }
 export interface interceptorsProps extends AxiosRequestConfig {
   appId : string
+}
+
+export interface STEP_0_DATA extends PRODUCT {}
+export interface BuyInsuranceState {
+  step: number;
+  stepData: object | undefined | null;
+  type: any;
+  step0data: STEP_0_DATA;
+  contractId: string;
+  step_1: object;
+  step_2: object;
+  step_3: object;
+  maxStep: number;
+  isInput: boolean;
+  inputData: object;
+  carTypes: [];
+  brands: [];
+  contractInfo : {} ,
+  vehicels : {}
+} 
+
+export interface APP_STATE_PROPS {
+  auth : object |  null
+  isLoading : boolean
+}
+export interface ROOT_STATE_PROPS {
+  app : APP_STATE_PROPS ;
+  buyInsurance : BuyInsuranceState ; 
+  _persist : object;
 }

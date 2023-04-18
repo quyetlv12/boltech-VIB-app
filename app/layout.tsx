@@ -4,6 +4,8 @@ import "./globals.css";
 import { Providers } from "./provider";
 import { usePathname } from "next/navigation";
 import CurrencyInputCpn from "@components/InputCpn";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function RootLayout({
   children,
@@ -20,7 +22,7 @@ export default function RootLayout({
           <div className={`${pathName === '/' ? "" : "pt-[50px] bg-light-gray w-full min-h-screen mx-auto"}`}>
           {children}
           </div>
-          
+          <ToastContainer />
         </Providers>
       </body>
     </html>

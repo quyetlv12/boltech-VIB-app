@@ -53,7 +53,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, getValues, errors, 
         {/* LIST COMPANY INSURANCE */}
         {logo && (
           <div className="border-b-[1px] border-[#F3F4F6] px-[20px]  bg-[#fff] py-[10px] flex items-center gap-5">
-            <Image src={step0data.icon} alt="logo pjico" width={40} />
+            <Image src={step0data.icon || ''} alt="logo pjico" width={40} />
             <div>
               <p>PJICO</p>
               <span className="text-[#F47920] font-semibold text-[15px]">
@@ -68,7 +68,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, getValues, errors, 
           // check field empty
           const _isError = errors[_elt.key_form]  ? 'border-[#ff0000] border-[1px]'  : 'border-b-[1px] border-[#F3F4F6]' 
           return (
-            <>
+            <div key={index}>
               <div
                 className={`flex justify-between px-3 h-[70px] cursor-pointer  items-center shadow-md rounded-md shadow-[#F3F4F6] ${_isError} mb-2`}
               >
@@ -106,7 +106,7 @@ const RowInfo: FC<Props> = ({ info, className, logo = false, getValues, errors, 
                   )}
                   <Image src={Arrow} alt="arrow" />
                 </div>
-              </div></>
+              </div></div>
           );
         })}
       </div>

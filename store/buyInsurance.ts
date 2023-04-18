@@ -1,27 +1,9 @@
 import { KEY_CONTRACT_ID, KEY_STEP } from "@constants";
 import { Draft, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_CAR_CONTRACT, API_CAR_TYPE } from "configs";
-import { INPUT_DATA } from "interfaces/insurances";
+import { BuyInsuranceState, INPUT_DATA, ROOT_STATE_PROPS } from "interfaces/insurances";
 import { RootState } from "store";
 import { HttpClient } from "utills/HttpClient";
-
-export interface BuyInsuranceState {
-  step: number;
-  stepData: object | undefined | null;
-  type: any;
-  step0data: object;
-  contractId: string;
-  step_1: object;
-  step_2: object;
-  step_3: object;
-  maxStep: number;
-  isInput: boolean;
-  inputData: object;
-  carTypes: [];
-  brands: [];
-  contractInfo : {} ,
-  vehicels : {}
-}
 
 export const initialState: BuyInsuranceState = {
   step: 0,
@@ -144,16 +126,18 @@ const buyInsurance = createSlice({
   },
 });
 // Selectors
-export const getStep = (state: any) => state.buyInsurance.step;
-export const getTypeInsurance = (state: any) => state.buyInsurance.type;
-export const getStep0data = (state: any) => state.buyInsurance.step0data;
-export const getMaxStep = (state: any) => state.buyInsurance.maxStep;
-export const getInputStatus = (state: any) => state.buyInsurance.isInput;
-export const getInputData = (state: any) => state.buyInsurance.inputData;
-export const getCarTypes = (state: any) => state.buyInsurance.carTypes;
-export const getBrands = (state: any) => state.buyInsurance.brands;
-export const getStep1Data = (state: any) => state.buyInsurance.step_1
-export const getContractId = (state : any) => state.buyInsurance[KEY_CONTRACT_ID]
+export const getStep = (state: ROOT_STATE_PROPS) => state.buyInsurance.step;
+export const getTypeInsurance = (state: ROOT_STATE_PROPS) => state.buyInsurance.type;
+export const getStep0data = (state: ROOT_STATE_PROPS) => state.buyInsurance.step0data;
+export const getMaxStep = (state: ROOT_STATE_PROPS) => state.buyInsurance.maxStep;
+export const getInputStatus = (state: ROOT_STATE_PROPS) => state.buyInsurance.isInput;
+export const getInputData = (state: ROOT_STATE_PROPS) => state.buyInsurance.inputData;
+export const getCarTypes = (state: ROOT_STATE_PROPS) => state.buyInsurance.carTypes;
+export const getBrands = (state: ROOT_STATE_PROPS) => state.buyInsurance.brands;
+export const getStep1Data = (state: ROOT_STATE_PROPS) => state.buyInsurance.step_1
+export const getContractId = (state : ROOT_STATE_PROPS) => state.buyInsurance.contractId
+export const getStep2Data = (state : ROOT_STATE_PROPS) => state.buyInsurance.step;
+ 
 
 // Reducers and actions
 export const {

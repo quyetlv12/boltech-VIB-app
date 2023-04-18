@@ -1,7 +1,7 @@
 import RowInfo from "@components/RowInfo";
 import Title from "@components/Title";
 import { CUSTOM_FIELD, CUSTOM_FIELD_STEP_2_1, CUSTOM_FIELD_STEP_2_2, CUSTOM_FIELD_STEP_2_3, CUSTOM_FIELD_STEP_2_4, CUSTOM_FIELD_STEP_2_5 } from "./utility";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Button from "@components/Button";
 import { STEP_1_DATA_PROPS } from "interfaces/insurances";
 import { useForm , SubmitHandler } from "react-hook-form";
@@ -9,6 +9,8 @@ import { _defaultValue, validate } from "../yupGlobal";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createContractService } from "services/buyCarInsurance";
 import { useMutation } from "@tanstack/react-query";
+import { isObjEmpty, useAppSelector } from "@constants";
+import { getStep2Data } from "store/buyInsurance";
 interface Props {
 }
 const Step2: FC<Props> = ({ }) => {
@@ -20,6 +22,7 @@ const Step2: FC<Props> = ({ }) => {
       resolver: yupResolver(validate)
     }
   );
+  const step_2 = useAppSelector(getStep2Data)
   
   // STEP 2 : update vehicel
   const updateVehicelMutation = useMutation(createContractService, {
@@ -31,6 +34,13 @@ const Step2: FC<Props> = ({ }) => {
   const onSubmit_step2: SubmitHandler<STEP_1_DATA_PROPS> = async (data) => {
     console.log("2", 2);
   }
+  useEffect(() => {
+    // setup value for form if step 1 saved data
+    // if (!isObjEmpty(step_1)) {
+    //   reset(step_1)
+    // }
+    
+  }, [])
   return (
     <form onSubmit={handleSubmit(onSubmit_step2)}>
       <div>

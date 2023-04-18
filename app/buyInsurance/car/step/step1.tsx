@@ -1,18 +1,17 @@
 import Button from "@components/Button";
-import PackageSelect from "@components/PackageSelect";
+import CurrencyInputCpn from "@components/InputCpn";
 import RowInfo from "@components/RowInfo";
 import Title from "@components/Title";
-import { FC, useEffect } from "react";
-import { createContractService, updateContractService, useCarType } from 'services/buyCarInsurance';
-import { KEY_CONTRACT_ID, KEY_CONTRACT_INFO, KEY_STEP, KEY_STEP_1, KEY_VEHICELS, useAppDispatch, useAppSelector } from './../../../../constants/index';
-import { CUSTOM_FIELD, getObjectContract } from "./utility";
-import { _defaultValue, validate } from "../yupGlobal";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SubmitHandler, useForm} from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { getContractId, getInputStatus, updateProps } from "store/buyInsurance";
 import { STEP_1_DATA_PROPS } from "interfaces/insurances";
-import CurrencyInputCpn from "@components/InputCpn";
+import { FC, useEffect } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { createContractService, updateContractService, useCarType } from 'services/buyCarInsurance';
+import { getContractId, getInputStatus, getStep1Data, updateProps } from "store/buyInsurance";
+import { _defaultValue, validate } from "../yupGlobal";
+import { KEY_CONTRACT_ID, KEY_CONTRACT_INFO, KEY_STEP, KEY_STEP_1, KEY_VEHICELS, isObjEmpty, toastError, useAppDispatch, useAppSelector } from './../../../../constants/index';
+import { CUSTOM_FIELD, getObjectContract } from "./utility";
 type Inputs = {
   carName: string,
   exampleRequired: string,
@@ -24,6 +23,7 @@ const Step1: FC<Props> = () => {
   const { status, data, error, isFetching } = useCarType(dispatch);
   const inputStatus = useAppSelector(getInputStatus)
   const contractId = useAppSelector(getContractId)
+  const step_1 = useAppSelector(getStep1Data)
   //STEP 1 :create contract
   const createContractMutation = useMutation(createContractService, {
     onSuccess: data => {
@@ -31,32 +31,50 @@ const Step1: FC<Props> = () => {
       dispatch(updateProps({ [KEY_STEP]: 2, [KEY_CONTRACT_ID]: contract.id, [KEY_CONTRACT_INFO]: contract, [KEY_VEHICELS]: vehicel }))
     }
   });
-   //STEP 1 :if contract id =>  update contract
-   const updateContractMutation = useMutation(updateContractService, {
+  //STEP 1 :if contract id =>  update contract
+  const updateContractMutation = useMutation(updateContractService, {
     onSuccess: data => {
       console.log(data);
-      
+
     }
   });
-  const { register, handleSubmit, watch ,setValue, getValues, formState: { errors }, control, setError } = useForm<STEP_1_DATA_PROPS>(
+  const { register, handleSubmit, watch, setValue, getValues, reset, formState: { errors }, control, setError } = useForm<STEP_1_DATA_PROPS>(
     {
-      mode: 'onChange',
+      mode: 'all',
       reValidateMode: 'onChange',
       defaultValues: _defaultValue.step_1,
       resolver: yupResolver(validate)
     }
   );
-  const watchAllField = watch()  
-  
+  const watchAllField = watch()
+
   // submit step 1
   const onSubmit_step1: SubmitHandler<STEP_1_DATA_PROPS> = async (data) => {
+    // toastError("Vui lòng nhập đầy đủ thông tin !")
     // save data step
-    dispatch(updateProps({[KEY_STEP_1] : data}))
+    dispatch(updateProps({ [KEY_STEP_1]: data }))
     if (contractId) {
       // updateContractMutation.mutate()
+      console.log("update contract and next step");
+      dispatch(
+        updateProps(
+          {
+            [KEY_STEP]: 2
+          }
+        )
+      )
+
+      return
     }
     createContractMutation.mutate(getObjectContract(data))
-  }  
+  }
+  useEffect(() => {
+    // setup value for form if step 1 saved data
+    if (!isObjEmpty(step_1)) {
+      reset(step_1)
+    }
+  }, [])
+
   return (
     <form onSubmit={handleSubmit(onSubmit_step1)}>
       {!inputStatus ? <div>
